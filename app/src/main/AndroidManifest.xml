@@ -27,7 +27,7 @@
             android:name=".activity.laureate.AddLaureareActivity"
             android:exported="false" />
         <activity
-            android:name=".SchoolDashboard"
+            android:name=".activity.laureate.SchoolDashboard"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

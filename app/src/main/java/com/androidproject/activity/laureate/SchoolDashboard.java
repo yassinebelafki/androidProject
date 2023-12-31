@@ -1,10 +1,12 @@
-package com.androidproject;
+package com.androidproject.activity.laureate;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+
+import com.androidproject.R;
 
 public class SchoolDashboard extends AppCompatActivity {
 
