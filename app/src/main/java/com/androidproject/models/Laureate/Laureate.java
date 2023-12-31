@@ -12,6 +12,9 @@ public class Laureate {
     private List<LaureateInterests> laureateInterests;
     private List<LaureateSkill> laureateSkills;
 
+    public Laureate() {
+    }
+
     public Laureate(String name, String email, String phone, String training, String city, List<LaureateExperience> laureateExperiences, List<LaureateInterests> laureateInterests, List<LaureateSkill> laureateSkills) {
         this.name = name;
         this.email = email;
