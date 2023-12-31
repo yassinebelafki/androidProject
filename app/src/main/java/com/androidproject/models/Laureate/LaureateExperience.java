@@ -1,16 +1,42 @@
 package com.androidproject.models.Laureate;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
 public class LaureateExperience {
+    private Long id;
     private String title;
     private String start_date;
     private String end_date;
     private String description;
 
+    public LaureateExperience(Long id,String title, String start_date, String end_date, String description) {
+        this.id = id;
+        this.title = title;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.description = description;
+    }
     public LaureateExperience(String title, String start_date, String end_date, String description) {
         this.title = title;
         this.start_date = start_date;
         this.end_date = end_date;
         this.description = description;
+    }
+
+    public LaureateExperience() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

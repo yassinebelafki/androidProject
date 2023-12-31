@@ -33,4 +33,9 @@
         <item name="boxStrokeColor">#296D98</item>
         <item name="boxStrokeWidth">1dp</item>
     </style>
+  <!-- Base application theme. -->
+    <style name="Base.Theme.AndroidProject" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
 </resources>

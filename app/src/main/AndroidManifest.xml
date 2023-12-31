@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,12 +16,22 @@
         android:theme="@style/Theme.AndroidProject"
         tools:targetApi="31">
         <activity
+            android:name=".activity.laureate.experience.EditExperienceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.laureate.experience.AddExperienceActivity"
+            android:parentActivityName=".activity.laureate.experience.ListExperienceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.laureate.experience.ListExperienceActivity"
+            android:parentActivityName=".activity.laureate.SchoolDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.auth.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".activity.laureate.SchoolDashboardActivity"
             android:exported="false" />
-
         <activity
             android:name=".activity.laureate.EditLaureateActivity"
             android:exported="false" />

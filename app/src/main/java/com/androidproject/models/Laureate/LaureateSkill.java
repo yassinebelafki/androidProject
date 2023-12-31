@@ -2,28 +2,18 @@ package com.androidproject.models.Laureate;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class LaureateSkill {
-    private List<LaureateSkillLinguistics> laureateSkillLinguistics;
-    private List<LaureateSkilltechnical> laureateSkilltechnicals;
-
-    public LaureateSkill(List<LaureateSkillLinguistics> laureateSkillLinguistics, List<LaureateSkilltechnical> laureateSkilltechnicals) {
-        this.laureateSkillLinguistics = laureateSkillLinguistics;
-        this.laureateSkilltechnicals = laureateSkilltechnicals;
-    }
-
-    public List<LaureateSkillLinguistics> getLaureateSkillLinguistics() {
-        return laureateSkillLinguistics;
-    }
-
-    public void setLaureateSkillLinguistics(List<LaureateSkillLinguistics> laureateSkillLinguistics) {
-        this.laureateSkillLinguistics = laureateSkillLinguistics;
-    }
-
-    public List<LaureateSkilltechnical> getLaureateSkilltechnicals() {
-        return laureateSkilltechnicals;
-    }
-
-    public void setLaureateSkilltechnicals(List<LaureateSkilltechnical> laureateSkilltechnicals) {
-        this.laureateSkilltechnicals = laureateSkilltechnicals;
-    }
+    private String type;
+    private String name;
 }
