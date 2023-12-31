@@ -18,8 +18,9 @@
             android:name=".activity.auth.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.auth.LoginActivity"
+            android:name=".activity.laureate.SchoolDashboardActivity"
             android:exported="false" />
+
         <activity
             android:name=".activity.laureate.EditLaureateActivity"
             android:exported="false" />
@@ -27,7 +28,7 @@
             android:name=".activity.laureate.AddLaureareActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.laureate.SchoolDashboard"
+            android:name=".activity.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

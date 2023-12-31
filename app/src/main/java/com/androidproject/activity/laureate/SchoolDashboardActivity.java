@@ -8,7 +8,7 @@ import android.os.Bundle;
 
 import com.androidproject.R;
 
-public class SchoolDashboard extends AppCompatActivity {
+public class SchoolDashboardActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
