@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">AndroidProject</string>
+    <string name="enter_user_name">Enter User Name</string>
+    <string name="enter_your_password">Enter Your Password</string>
+    <string name="confirm_your_password">Confirm Your Password</string>
+    <string name="register">Register</string>
+    <string name="already_a_user_login_here">Already a User ? Login Here</string>
+    <string name="login">Login</string>
+    <string name="new_user_registre_here">New User ? Registre Here</string>
 </resources>
