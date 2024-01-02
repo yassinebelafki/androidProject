@@ -19,6 +19,7 @@ import com.androidproject.activity.laureate.skill.SkillsData;
 import com.androidproject.dbLocal.MyDatabaseHelper;
 import com.androidproject.models.Laureate.LaureateInterests;
 import com.androidproject.models.Laureate.LaureateSkill;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class ListInterest extends AppCompatActivity {
 
     ArrayList<String> interest_names;
     CustomInterestAdapter customAdapter;
+    FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,13 @@ public class ListInterest extends AppCompatActivity {
                 interest_names);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ListInterest.this));
+        floatingActionButton = findViewById(R.id.add_button);
+        if (getIntent().hasExtra("no_add_btn")){
+            floatingActionButton.setVisibility(View.INVISIBLE);
+        }
     }
     void storeDataInArrays(){
-        if (InterestData.laureateInterests.isEmpty()){
+        if (SkillsData.laureateSkills == null || InterestData.laureateInterests.isEmpty()){
 
             empty_imageview.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);

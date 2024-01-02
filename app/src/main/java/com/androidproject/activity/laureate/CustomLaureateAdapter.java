@@ -58,7 +58,7 @@ public class CustomLaureateAdapter extends RecyclerView.Adapter<CustomLaureateAd
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditExperienceActivity.class);
+                Intent intent = new Intent(context, LaureateDetailsActivity.class);
 //                intent.putExtra("experience_id", String.valueOf(experience_ids.get(position)));
                 intent.putExtra("laureate_name", String.valueOf(laureateNames.get(position)));
                 intent.putExtra("laureate_training", String.valueOf(laureateTraining.get(position)));

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.androidproject.R;
 import com.androidproject.dbLocal.MyDatabaseHelper;
 import com.androidproject.models.Laureate.LaureateSkill;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,8 @@ public class ListSkills extends AppCompatActivity {
 
     ArrayList<String> skill_names, skill_types;
     CustomSkillAdapter customAdapter;
+    FloatingActionButton floatingActionButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +50,15 @@ public class ListSkills extends AppCompatActivity {
                 skill_names, skill_types);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ListSkills.this));
+
+        floatingActionButton = findViewById(R.id.add_button);
+        if (getIntent().hasExtra("no_add_btn")){
+            floatingActionButton.setVisibility(View.INVISIBLE);
+        }
     }
 
     void storeDataInArrays(){
-        if (SkillsData.laureateSkills.isEmpty()){
+        if (SkillsData.laureateSkills == null || SkillsData.laureateSkills.isEmpty()){
 
             empty_imageview.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.androidproject.R;
 import com.androidproject.dbLocal.MyDatabaseHelper;
 import com.androidproject.models.Laureate.LaureateExperience;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ public class ListExperienceActivity extends AppCompatActivity {
     ArrayList<String> experience_ids, experience_titles,experience_descriptions, experience_start_dates, experience_end_dates;
     CustomAdapter customAdapter;
 
+    FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +51,14 @@ public class ListExperienceActivity extends AppCompatActivity {
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ListExperienceActivity.this));
 
-
+        floatingActionButton = findViewById(R.id.add_button);
+        if (getIntent().hasExtra("no_add_btn")){
+            floatingActionButton.setVisibility(View.INVISIBLE);
+        }
 
     }
     void storeDataInArrays(){
-        if (ExperienceData.laureateExperienceList.isEmpty()){
+        if (ExperienceData.laureateExperienceList == null || ExperienceData.laureateExperienceList.isEmpty()){
 
             empty_imageview.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);

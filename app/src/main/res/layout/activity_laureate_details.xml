@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_shade_1"
+    tools:context=".activity.laureate.LaureateDetailsActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--edit text for course name-->
+            <TextView
+                android:id="@+id/textViewName"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Name"
+                android:background="@drawable/bordered_background"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+            <!--edit text for course price-->
+            <TextView
+                android:id="@+id/textViewTraining"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Training"
+                android:background="@drawable/bordered_background"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+            <!--edit text for course suited for-->
+            <TextView
+                android:id="@+id/textViewCity"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="City"
+                android:background="@drawable/bordered_background"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+
+            <TextView
+                android:id="@+id/textViewAge"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Age"
+                android:background="@drawable/bordered_background"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+
+            <TextView
+                android:id="@+id/textViewEmail"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Email"
+                android:background="@drawable/bordered_background"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+            <TextView
+                android:id="@+id/textViewPhone"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Phone"
+                android:background="@drawable/bordered_background"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+            <TextView
+                android:id="@+id/textViewExperience"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Click to see experiences"
+                android:background="@drawable/bordered_background"
+                android:onClick="goToExperienceList"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+            <TextView
+                android:id="@+id/textViewSkills"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Click to see skills"
+                android:background="@drawable/bordered_background"
+                android:onClick="goToSkillsList"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+            <TextView
+                android:id="@+id/textViewInterest"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Click to see interests"
+                android:background="@drawable/bordered_background"
+                android:onClick="goToInterestsList"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+
+            <Button
+                android:id="@+id/idBtnEditLaureate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_back"
+                android:text="Edit Laureate"
+                android:onClick="editLaureate"
+                android:textAllCaps="false" />
+            <Button
+                android:id="@+id/idBtnDeleteLaureate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_back"
+                android:text="Delete Laureate"
+                android:onClick="deleteLaureate"
+                android:textAllCaps="false" />
+
+
+        </LinearLayout>
+
+        <!--progress bar for loading indicator-->
+        <ProgressBar
+            android:id="@+id/idPBLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progress_back"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</ScrollView>

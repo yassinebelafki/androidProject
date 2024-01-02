@@ -16,29 +16,33 @@
         android:theme="@style/Theme.AndroidProject"
         tools:targetApi="31">
         <activity
+            android:name=".activity.laureate.LaureateDetailsActivity"
+            android:parentActivityName=".activity.laureate.SchoolDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.laureate.interest.EditInterest"
             android:exported="false"
-            android:parentActivityName=".activity.laureate.interest.ListInterest"/>
+            android:parentActivityName=".activity.laureate.interest.ListInterest" />
         <activity
             android:name=".activity.laureate.interest.AddInterest"
             android:exported="false"
-            android:parentActivityName=".activity.laureate.interest.ListInterest"/>
+            android:parentActivityName=".activity.laureate.interest.ListInterest" />
         <activity
             android:name=".activity.laureate.interest.ListInterest"
             android:exported="false"
-            android:parentActivityName=".activity.laureate.SchoolDashboardActivity"/>
+            android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
         <activity
             android:name=".activity.laureate.skill.AddSkills"
             android:exported="false"
-            android:parentActivityName=".activity.laureate.skill.ListSkills"/>
+            android:parentActivityName=".activity.laureate.skill.ListSkills" />
         <activity
             android:name=".activity.laureate.skill.EditSkills"
             android:exported="false"
-            android:parentActivityName=".activity.laureate.skill.ListSkills"/>
+            android:parentActivityName=".activity.laureate.skill.ListSkills" />
         <activity
             android:name=".activity.laureate.skill.ListSkills"
-            android:parentActivityName=".activity.laureate.SchoolDashboardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
         <activity
             android:name=".activity.laureate.experience.EditExperienceActivity"
             android:parentActivityName=".activity.laureate.experience.ListExperienceActivity" />
@@ -50,8 +54,9 @@
             android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
         <activity android:name=".activity.auth.RegisterActivity" />
         <activity android:name=".activity.laureate.SchoolDashboardActivity" />
-        <activity android:name=".activity.laureate.EditLaureateActivity"
-            android:parentActivityName=".activity.laureate.SchoolDashboardActivity"/>
+        <activity
+            android:name=".activity.laureate.EditLaureateActivity"
+            android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
         <activity android:name=".activity.laureate.AddLaureareActivity" />
         <activity
             android:name=".activity.auth.LoginActivity"

@@ -21,6 +21,7 @@ import com.androidproject.activity.laureate.experience.ExperienceData;
 import com.androidproject.activity.laureate.experience.ListExperienceActivity;
 import com.androidproject.activity.laureate.skill.AddSkills;
 import com.androidproject.activity.laureate.skill.ListSkills;
+import com.androidproject.activity.laureate.skill.SkillsData;
 import com.androidproject.models.Laureate.Laureate;
 import com.androidproject.models.Laureate.LaureateExperience;
 import com.androidproject.models.Laureate.LaureateSkill;

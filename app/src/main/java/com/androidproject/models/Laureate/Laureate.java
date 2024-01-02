@@ -12,6 +12,8 @@ import lombok.Setter;
 
 
 public class Laureate {
+
+    String laureateId;
     private String name;
     private Integer age;
     private String email;
@@ -28,6 +30,20 @@ public class Laureate {
     public Laureate(String name, Integer age, String email, String phone, String training, String city,
                     List<LaureateExperience> laureateExperiences, List<LaureateInterests> laureateInterests,
                     List<LaureateSkill> laureateSkills) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.phone = phone;
+        this.training = training;
+        this.city = city;
+        this.laureateExperiences = laureateExperiences;
+        this.laureateInterests = laureateInterests;
+        this.laureateSkills = laureateSkills;
+    }
+    public Laureate(String laureateId ,  String name, Integer age, String email, String phone, String training, String city,
+                    List<LaureateExperience> laureateExperiences, List<LaureateInterests> laureateInterests,
+                    List<LaureateSkill> laureateSkills) {
+        this.laureateId = laureateId;
         this.name = name;
         this.age = age;
         this.email = email;
@@ -111,6 +127,13 @@ public class Laureate {
         this.laureateSkills = laureateSkills;
     }
 
+    public String getLaureateId() {
+        return laureateId;
+    }
+
+    public void setLaureateId(String laureateId) {
+        this.laureateId = laureateId;
+    }
 
     @Override
     public String toString() {
