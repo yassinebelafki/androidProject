@@ -1,5 +1,6 @@
 package com.androidproject.dbLocal;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -73,7 +74,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    void updateExperience(LaureateExperience laureateExperience){
+    public void updateExperience(LaureateExperience laureateExperience){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_TITLE, laureateExperience.getTitle());
@@ -90,7 +91,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    void deleteOneRow(String row_id){
+    public void deleteOneRow(String row_id){
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
         if(result == -1){
@@ -104,5 +105,35 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME);
     }
+    @SuppressLint("Range")
+    public LaureateExperience getExperienceById(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        LaureateExperience laureateExperience = null;
+
+        String[] columns = {
+                COLUMN_ID,
+                COLUMN_TITLE,
+                COLUMN_DESCRIPTION,
+                COLUMN_START_DATE,
+                COLUMN_END_DATE
+        };
+
+        Cursor cursor = db.query(TABLE_NAME, columns, COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            laureateExperience = new LaureateExperience();
+            laureateExperience.setId( cursor.getLong(cursor.getColumnIndex(COLUMN_ID)));
+            laureateExperience.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_TITLE)));
+            laureateExperience.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)));
+            laureateExperience.setStart_date(cursor.getString(cursor.getColumnIndex(COLUMN_START_DATE)));
+            laureateExperience.setEnd_date(cursor.getString(cursor.getColumnIndex(COLUMN_END_DATE)));
+
+            cursor.close();
+        }
+
+        return laureateExperience;
+    }
+
 
 }

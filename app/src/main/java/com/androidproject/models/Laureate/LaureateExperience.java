@@ -21,7 +21,7 @@ public class LaureateExperience {
         this.end_date = end_date;
         this.description = description;
     }
-    public LaureateExperience(String title, String start_date, String end_date, String description) {
+    public LaureateExperience(String title, String description, String start_date, String end_date) {
         this.title = title;
         this.start_date = start_date;
         this.end_date = end_date;

@@ -7,6 +7,7 @@
     android:background="@color/black_shade_1"
     tools:context=".activity.laureate.AddLaureareActivity">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -175,14 +176,46 @@
 
             <TextView
                 android:id="@+id/textView2"
+                style="@style/LoginTextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="12dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:padding="5dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
                 android:text="Experiences"
+                android:background="@drawable/bordered_background"
                 android:onClick="goToExperienceList"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+            <TextView
+                android:id="@+id/textSkills"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Skills"
+                android:background="@drawable/bordered_background"
+                android:onClick="goToSkillsList"
+                android:textColor="@color/white"
+                tools:layout_editor_absoluteX="115dp"
+                tools:layout_editor_absoluteY="44dp" />
+            <TextView
+                android:id="@+id/textInterest"
+                style="@style/LoginTextInputLayoutStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="12dp"
+                android:padding="15dp"
+                android:text="Interests"
+                android:background="@drawable/bordered_background"
+                android:onClick="goToInterestsList"
                 android:textColor="@color/white"
                 tools:layout_editor_absoluteX="115dp"
                 tools:layout_editor_absoluteY="44dp" />

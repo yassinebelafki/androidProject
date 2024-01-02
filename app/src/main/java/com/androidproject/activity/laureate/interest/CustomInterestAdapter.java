@@ -1,4 +1,4 @@
-package com.androidproject.activity.laureate.experience;
+package com.androidproject.activity.laureate.interest;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -18,24 +18,22 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.androidproject.R;
+import com.androidproject.activity.laureate.experience.EditExperienceActivity;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
+public class CustomInterestAdapter extends RecyclerView.Adapter<CustomInterestAdapter.MyViewHolder> {
 
     private Context context;
     private Activity activity;
-    private ArrayList  experience_titles, experience_start_dates, experience_end_dates;
+    private ArrayList  interest_names;
 
-    CustomAdapter(Activity activity, Context context,
-                  ArrayList experience_titles, ArrayList experience_start_dates,
-                  ArrayList experience_end_dates){
+    CustomInterestAdapter(Activity activity, Context context,
+                          ArrayList interest_names){
         this.activity = activity;
         this.context = context;
 //        this.experience_ids = experience_ids;
-        this.experience_titles = experience_titles;
-        this.experience_start_dates = experience_start_dates;
-        this.experience_end_dates = experience_end_dates;
+        this.interest_names = interest_names;
     }
 
     @NonNull
@@ -50,18 +48,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 //        holder.experience_id.setText(String.valueOf(experience_ids.get(position)));
-        holder.experience_title.setText(String.valueOf(experience_titles.get(position)));
-        holder.experience_start_date.setText("from : " +  String.valueOf(experience_start_dates.get(position)));
-        holder.experience_end_date.setText("to : " +String.valueOf(experience_end_dates.get(position)));
+        holder.interest_name.setText(String.valueOf(interest_names.get(position)));
         //Recyclerview onClickListener
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditExperienceActivity.class);
+                Intent intent = new Intent(context, EditInterest.class);
 //                intent.putExtra("experience_id", String.valueOf(experience_ids.get(position)));
-                intent.putExtra("experience_title", String.valueOf(experience_titles.get(position)));
-                intent.putExtra("experience_start_date", String.valueOf(experience_start_dates.get(position)));
-                intent.putExtra("experience_end_date", String.valueOf(experience_end_dates.get(position)));
+                intent.putExtra("interest_name", String.valueOf(interest_names.get(position)));
                 activity.startActivityForResult(intent, 1);
             }
         });
@@ -69,20 +63,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return experience_titles.size();
+        return interest_names.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView experience_id, experience_title, experience_start_date, experience_end_date;
+        TextView interest_name;
         LinearLayout mainLayout;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
 //            experience_id = itemView.findViewById(R.id.experience_id);
-            experience_title = itemView.findViewById(R.id.experience_title);
-            experience_start_date = itemView.findViewById(R.id.experience_start_date);
-            experience_end_date = itemView.findViewById(R.id.experience_end_date);
+            interest_name = itemView.findViewById(R.id.experience_title);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

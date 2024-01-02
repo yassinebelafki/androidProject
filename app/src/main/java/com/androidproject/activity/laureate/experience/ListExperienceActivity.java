@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.androidproject.R;
 import com.androidproject.dbLocal.MyDatabaseHelper;
+import com.androidproject.models.Laureate.LaureateExperience;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class ListExperienceActivity extends AppCompatActivity {
         storeDataInArrays();
 
         customAdapter = new CustomAdapter(ListExperienceActivity.this,this,
-                experience_ids, experience_titles, experience_start_dates,
+                 experience_titles, experience_start_dates,
                 experience_end_dates);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ListExperienceActivity.this));
@@ -52,20 +53,35 @@ public class ListExperienceActivity extends AppCompatActivity {
 
     }
     void storeDataInArrays(){
-        Cursor cursor = myDB.readAllData();
-        if(cursor.getCount() == 0){
+        if (ExperienceData.laureateExperienceList.isEmpty()){
+
             empty_imageview.setVisibility(View.VISIBLE);
             no_data.setVisibility(View.VISIBLE);
-        }else{
-            while (cursor.moveToNext()){
-                experience_ids.add(cursor.getString(0));
-                experience_titles.add(cursor.getString(1));
-                experience_start_dates.add(cursor.getString(2));
-                experience_end_dates.add(cursor.getString(3));
-            }
-            empty_imageview.setVisibility(View.GONE);
-            no_data.setVisibility(View.GONE);
         }
+        else {
+            for (LaureateExperience experience : ExperienceData.laureateExperienceList) {
+                // Add values to respective lists
+                experience_titles.add(experience.getTitle());
+                experience_descriptions.add(experience.getDescription());
+                experience_start_dates.add(experience.getStart_date());
+                experience_end_dates.add(experience.getEnd_date());
+            }
+        }
+
+//        Cursor cursor = myDB.readAllData();
+//        if(cursor.getCount() == 0){
+//            empty_imageview.setVisibility(View.VISIBLE);
+//            no_data.setVisibility(View.VISIBLE);
+//        }else{
+//            while (cursor.moveToNext()){
+//                experience_ids.add(cursor.getString(0));
+//                experience_titles.add(cursor.getString(1));
+//                experience_start_dates.add(cursor.getString(2));
+//                experience_end_dates.add(cursor.getString(3));
+//            }
+//            empty_imageview.setVisibility(View.GONE);
+//            no_data.setVisibility(View.GONE);
+//        }
     }
 
     public void goToAddExperience(View view) {
