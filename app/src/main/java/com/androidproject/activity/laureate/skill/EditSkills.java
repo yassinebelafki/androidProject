@@ -84,6 +84,7 @@ public class EditSkills extends AppCompatActivity {
     public void updateSkill(View view) {
         laureateSkill.setName(skillNameInput.getText().toString());
         laureateSkill.setType(skillType);
+        finish();
         Intent intent = new Intent(EditSkills.this, ListSkills.class);
         startActivity(intent);
 
@@ -102,6 +103,7 @@ public class EditSkills extends AppCompatActivity {
 //                    MyDatabaseHelper myDB = new MyDatabaseHelper(EditExperienceActivity.this);
 //                    myDB.deleteOneRow(String.valueOf(laureateExperience.getId()));
                 SkillsData.laureateSkills.remove(laureateSkill);
+                finish();
                 Intent intent = new Intent(EditSkills.this, ListSkills.class);
                 startActivity(intent);
                 finish();

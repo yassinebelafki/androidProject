@@ -57,6 +57,7 @@ public class CustomInterestAdapter extends RecyclerView.Adapter<CustomInterestAd
 //                intent.putExtra("experience_id", String.valueOf(experience_ids.get(position)));
                 intent.putExtra("interest_name", String.valueOf(interest_names.get(position)));
                 activity.startActivityForResult(intent, 1);
+                ((Activity) context).finish();
             }
         });
     }

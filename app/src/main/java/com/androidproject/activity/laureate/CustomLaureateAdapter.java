@@ -1,4 +1,4 @@
-package com.androidproject.activity.laureate.skill;
+package com.androidproject.activity.laureate;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,18 +22,21 @@ import com.androidproject.activity.laureate.experience.EditExperienceActivity;
 
 import java.util.ArrayList;
 
-public class CustomSkillAdapter extends RecyclerView.Adapter<CustomSkillAdapter.MyViewHolder> {
+public class CustomLaureateAdapter extends RecyclerView.Adapter<CustomLaureateAdapter.MyViewHolder> {
 
     private Context context;
     private Activity activity;
-    private ArrayList skill_names, skill_types;
+    private ArrayList laureateNames, laureateTraining, laureateCity;
 
-    CustomSkillAdapter(Activity activity, Context context,
-                       ArrayList skill_names, ArrayList skill_types){
+    CustomLaureateAdapter(Activity activity, Context context,
+                          ArrayList laureateNames, ArrayList laureateTraining,
+                          ArrayList laureateCity){
         this.activity = activity;
         this.context = context;
-        this.skill_names = skill_names;
-        this.skill_types = skill_types;
+//        this.experience_ids = experience_ids;
+        this.laureateNames = laureateNames;
+        this.laureateTraining = laureateTraining;
+        this.laureateCity = laureateCity;
     }
 
     @NonNull
@@ -49,16 +51,18 @@ public class CustomSkillAdapter extends RecyclerView.Adapter<CustomSkillAdapter.
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 //        holder.experience_id.setText(String.valueOf(experience_ids.get(position)));
-        holder.skill_name.setText(String.valueOf(skill_names.get(position)));
-        holder.skill_type.setText("type : " +  String.valueOf(skill_types.get(position)));
+        holder.laureate_name.setText(String.valueOf(laureateNames.get(position)));
+        holder.laureate_training.setText("Training : " +  String.valueOf(laureateTraining.get(position)));
+        holder.laureate_city.setText("city : " +String.valueOf(laureateCity.get(position)));
         //Recyclerview onClickListener
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditSkills.class);
+                Intent intent = new Intent(context, EditExperienceActivity.class);
 //                intent.putExtra("experience_id", String.valueOf(experience_ids.get(position)));
-                intent.putExtra("skill_name", String.valueOf(skill_names.get(position)));
-                intent.putExtra("skill_type", String.valueOf(skill_types.get(position)));
+                intent.putExtra("laureate_name", String.valueOf(laureateNames.get(position)));
+                intent.putExtra("laureate_training", String.valueOf(laureateTraining.get(position)));
+                intent.putExtra("laureate_city", String.valueOf(laureateCity.get(position)));
                 activity.startActivityForResult(intent, 1);
                 ((Activity) context).finish();
             }
@@ -67,20 +71,20 @@ public class CustomSkillAdapter extends RecyclerView.Adapter<CustomSkillAdapter.
 
     @Override
     public int getItemCount() {
-        return skill_names.size();
+        return laureateNames.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView skill_name , skill_type;
+        TextView laureate_name, laureate_training, laureate_city;
         LinearLayout mainLayout;
-
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
 //            experience_id = itemView.findViewById(R.id.experience_id);
-            skill_name = itemView.findViewById(R.id.experience_title);
-            skill_type = itemView.findViewById(R.id.experience_start_date);
+            laureate_name = itemView.findViewById(R.id.experience_title);
+            laureate_training = itemView.findViewById(R.id.experience_start_date);
+            laureate_city = itemView.findViewById(R.id.experience_end_date);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

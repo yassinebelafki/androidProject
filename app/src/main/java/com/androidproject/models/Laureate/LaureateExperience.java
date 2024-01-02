@@ -14,6 +14,7 @@ public class LaureateExperience {
     private String end_date;
     private String description;
 
+
     public LaureateExperience(Long id,String title, String start_date, String end_date, String description) {
         this.id = id;
         this.title = title;
@@ -69,5 +70,16 @@ public class LaureateExperience {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "LaureateExperience{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", start_date='" + start_date + '\'' +
+                ", end_date='" + end_date + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

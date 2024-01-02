@@ -63,6 +63,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("experience_start_date", String.valueOf(experience_start_dates.get(position)));
                 intent.putExtra("experience_end_date", String.valueOf(experience_end_dates.get(position)));
                 activity.startActivityForResult(intent, 1);
+                ((Activity) context).finish();
             }
         });
     }

@@ -54,6 +54,7 @@ public class EditInterest extends AppCompatActivity {
 
     public void updateInterest(View view) {
         laureateInterests.setName(interestNameInput.getText().toString());
+        finish();
         Intent intent = new Intent(EditInterest.this, ListInterest.class);
         startActivity(intent);
     }

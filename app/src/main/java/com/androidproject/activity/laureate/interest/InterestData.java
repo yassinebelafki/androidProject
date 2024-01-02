@@ -6,5 +6,5 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InterestData {
-    static List<LaureateInterests> laureateInterests = new ArrayList<>();
+    public static List<LaureateInterests> laureateInterests = new ArrayList<>();
 }

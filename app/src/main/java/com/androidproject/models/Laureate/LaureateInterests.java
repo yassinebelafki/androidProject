@@ -6,13 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+
 public class LaureateInterests {
     private String name;
+
+    public LaureateInterests() {
+    }
 
     public LaureateInterests(String name) {
         this.name = name;
@@ -24,5 +23,12 @@ public class LaureateInterests {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "LaureateInterests{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

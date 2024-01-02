@@ -71,6 +71,7 @@ import java.util.Optional;
             laureateExperience.setDescription(experienceDescription.getText().toString());
             laureateExperience.setStart_date(experienceStartDate.getText().toString());
             laureateExperience.setEnd_date(experienceEndDate.getText().toString());
+            finish();
             Intent intent = new Intent(EditExperienceActivity.this, ListExperienceActivity.class);
             startActivity(intent);
         }
@@ -89,6 +90,7 @@ import java.util.Optional;
 //                    MyDatabaseHelper myDB = new MyDatabaseHelper(EditExperienceActivity.this);
 //                    myDB.deleteOneRow(String.valueOf(laureateExperience.getId()));
                     ExperienceData.laureateExperienceList.remove(laureateExperience);
+                   finish();
                     Intent intent = new Intent(EditExperienceActivity.this, ListExperienceActivity.class);
                     startActivity(intent);
                     finish();

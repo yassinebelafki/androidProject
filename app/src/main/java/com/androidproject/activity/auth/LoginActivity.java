@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             //if the user is not null then we are opening a main activity on below line.
-            Intent i = new Intent(LoginActivity.this, AddLaureareActivity.class);
+            Intent i = new Intent(LoginActivity.this, SchoolDashboardActivity.class);
             startActivity(i);
             this.finish();
         }

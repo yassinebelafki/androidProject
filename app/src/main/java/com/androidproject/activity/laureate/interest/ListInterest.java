@@ -38,9 +38,7 @@ public class ListInterest extends AppCompatActivity {
         no_data = findViewById(R.id.no_dataInterest);
         recyclerView = findViewById(R.id.recyclerInterestView);
         interest_names = new ArrayList<>();
-
         storeDataInArrays();
-
         customAdapter = new CustomInterestAdapter(ListInterest.this,this,
                 interest_names);
         recyclerView.setAdapter(customAdapter);
@@ -59,11 +57,12 @@ public class ListInterest extends AppCompatActivity {
             }
         }
 
-
     }
 
     public void goToAddInterest(View view) {
+        finish();
         Intent intent = new Intent(ListInterest.this, AddInterest.class);
         startActivity(intent);
+
     }
 }

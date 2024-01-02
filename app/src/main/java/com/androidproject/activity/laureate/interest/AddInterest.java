@@ -27,6 +27,7 @@ public class AddInterest extends AppCompatActivity {
     public void addNewInterest(View view) {
         interestNameInput = findViewById(R.id.idEdtinterestName);
         InterestData.laureateInterests.add(new LaureateInterests(interestNameInput.getText().toString()));
+        finish();
         Intent intent = new Intent(AddInterest.this, ListInterest.class);
         startActivity(intent);
     }

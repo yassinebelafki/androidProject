@@ -1,5 +1,6 @@
 package com.androidproject.activity.laureate.skill;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,12 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidproject.R;
-import com.androidproject.activity.laureate.experience.AddExperienceActivity;
-import com.androidproject.activity.laureate.experience.CustomAdapter;
-import com.androidproject.activity.laureate.experience.ExperienceData;
-import com.androidproject.activity.laureate.experience.ListExperienceActivity;
 import com.androidproject.dbLocal.MyDatabaseHelper;
-import com.androidproject.models.Laureate.LaureateExperience;
 import com.androidproject.models.Laureate.LaureateSkill;
 
 import java.util.ArrayList;
@@ -35,6 +31,10 @@ public class ListSkills extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_skills);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("List of Skills");
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         empty_imageview = findViewById(R.id.empty_imageSkillview);
         no_data = findViewById(R.id.no_dataSkill);
         recyclerView = findViewById(R.id.recyclerSkillView);
@@ -67,7 +67,12 @@ public class ListSkills extends AppCompatActivity {
     }
 
     public void goToAddSkill(View view) {
+        finish();
         Intent intent = new Intent(ListSkills.this, AddSkills.class);
         startActivity(intent);
+    }
+
+    public void backToLaureate(View view) {
+        finish();
     }
 }

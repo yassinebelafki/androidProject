@@ -85,7 +85,11 @@ public class ListExperienceActivity extends AppCompatActivity {
     }
 
     public void goToAddExperience(View view) {
+        finish();
         Intent intent = new Intent(ListExperienceActivity.this, AddExperienceActivity.class);
         startActivity(intent);
+    }
+
+    public void goToAddLaureate(View view) {
     }
 }

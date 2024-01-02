@@ -36,6 +36,7 @@ public class AddExperienceActivity extends AppCompatActivity {
         myDB.addExperience(laureateExperience);
         //using local list :
         ExperienceData.laureateExperienceList.add(laureateExperience);
+        finish();
         Intent intent = new Intent(AddExperienceActivity.this, ListExperienceActivity.class);
         startActivity(intent);
     }

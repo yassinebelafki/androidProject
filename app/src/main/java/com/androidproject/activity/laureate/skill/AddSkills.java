@@ -47,7 +47,7 @@ public class AddSkills extends AppCompatActivity {
     public void addNewSkill(View view) {
         skillNameInput = findViewById(R.id.idEdtskillName);
         SkillsData.laureateSkills.add(new LaureateSkill(skillType , skillNameInput.getText().toString()));
-
+        finish();
         Intent intent = new Intent(AddSkills.this, ListSkills.class);
         startActivity(intent);
     }
