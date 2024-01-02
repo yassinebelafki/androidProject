@@ -33,10 +33,7 @@ import java.util.Optional;
         experienceStartDate = findViewById(R.id.idEdtexpStartDate);
         experienceEndDate = findViewById(R.id.idEdtexpEndDate);
         getAndSetIntentData();
-        ActionBar ab = getSupportActionBar();
-        if (ab != null) {
-                ab.setTitle((CharSequence) experienceTitle);
-        }
+
 
 
     }

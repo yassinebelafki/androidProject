@@ -1,5 +1,7 @@
 package com.androidproject.models.Laureate;
 
+import java.util.Objects;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -81,5 +83,18 @@ public class LaureateExperience {
                 ", end_date='" + end_date + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LaureateExperience that = (LaureateExperience) o;
+        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(start_date, that.start_date) && Objects.equals(end_date, that.end_date) && Objects.equals(description, that.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, start_date, end_date, description);
     }
 }

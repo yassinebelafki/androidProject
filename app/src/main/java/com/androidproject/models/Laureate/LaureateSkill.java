@@ -1,6 +1,7 @@
 package com.androidproject.models.Laureate;
 
 import java.util.List;
+import java.util.Objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,5 +44,18 @@ public class LaureateSkill {
                 "type='" + type + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LaureateSkill that = (LaureateSkill) o;
+        return Objects.equals(type, that.type) && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, name);
     }
 }

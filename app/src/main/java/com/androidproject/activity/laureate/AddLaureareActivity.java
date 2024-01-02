@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.androidproject.R;
+import com.androidproject.activity.laureate.experience.AddExperienceActivity;
 import com.androidproject.activity.laureate.experience.ExperienceData;
 import com.androidproject.activity.laureate.experience.ListExperienceActivity;
 import com.androidproject.activity.laureate.interest.InterestData;
@@ -77,6 +78,9 @@ public class AddLaureareActivity extends AppCompatActivity {
                         InterestData.laureateInterests.clear();
                         ExperienceData.laureateExperienceList.clear();
                         Toast.makeText(getApplicationContext(), "New Laureate is added successfully!", Toast.LENGTH_SHORT).show();
+                        finish();
+                        Intent intent = new Intent(AddLaureareActivity.this, SchoolDashboardActivity.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(getApplicationContext(), "Error while adding new Laureate!", Toast.LENGTH_SHORT).show();
                     }

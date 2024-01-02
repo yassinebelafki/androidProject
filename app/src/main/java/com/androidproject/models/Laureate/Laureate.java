@@ -1,6 +1,7 @@
 package com.androidproject.models.Laureate;
 
 import java.util.List;
+import java.util.Objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -124,5 +125,22 @@ public class Laureate {
                 ", laureateInterests=" + laureateInterests +
                 ", laureateSkills=" + laureateSkills +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Laureate laureate = (Laureate) o;
+        return Objects.equals(name, laureate.name) && Objects.equals(age, laureate.age) &&
+                Objects.equals(email, laureate.email) && Objects.equals(phone, laureate.phone) &&
+                Objects.equals(training, laureate.training) && Objects.equals(city, laureate.city) &&
+                Objects.equals(laureateExperiences, laureate.laureateExperiences) &&
+                Objects.equals(laureateInterests, laureate.laureateInterests) && Objects.equals(laureateSkills, laureate.laureateSkills);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, email, phone, training, city, laureateExperiences, laureateInterests, laureateSkills);
     }
 }

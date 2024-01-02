@@ -1,5 +1,7 @@
 package com.androidproject.models.Laureate;
 
+import java.util.Objects;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,5 +32,18 @@ public class LaureateInterests {
         return "LaureateInterests{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LaureateInterests interests = (LaureateInterests) o;
+        return Objects.equals(name, interests.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
