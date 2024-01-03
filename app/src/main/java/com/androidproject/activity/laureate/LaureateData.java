@@ -7,4 +7,6 @@ import java.util.List;
 
 public class LaureateData {
     static List<Laureate> laureateList;
+    static Laureate editedLaureate;
+    static String laureateUniqueIdentifier;
 }

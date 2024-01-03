@@ -70,8 +70,6 @@ public class ListSkills extends AppCompatActivity {
                 skill_types.add(skill.getType());
             }
         }
-
-
     }
 
     public void goToAddSkill(View view) {

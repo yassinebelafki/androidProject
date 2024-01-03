@@ -69,6 +69,7 @@ public class LaureateDetailsActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     // Retrieve the key for the Laureate with the specified name
                      uniqueIdentifier = snapshot.getKey();
+                    LaureateData.laureateUniqueIdentifier = uniqueIdentifier;
                     databaseReference = firebaseDatabase.getReference("laureates").child(uniqueIdentifier);
                 }
             }
@@ -92,6 +93,8 @@ public class LaureateDetailsActivity extends AppCompatActivity {
                 ExperienceData.laureateExperienceList = myLaureate.getLaureateExperiences();
                 SkillsData.laureateSkills = myLaureate.getLaureateSkills();
                 InterestData.laureateInterests = myLaureate.getLaureateInterests();
+                LaureateData.editedLaureate = myLaureate;
+
                 //Setting Intent Data
                 textViewName.setText(myLaureate.getName());
                 textViewPhone.setText(myLaureate.getPhone());
@@ -157,5 +160,7 @@ public class LaureateDetailsActivity extends AppCompatActivity {
 
 
     public void editLaureate(View view) {
+        Intent intent = new Intent(LaureateDetailsActivity.this, EditLaureateActivity.class);
+        startActivity(intent);
     }
 }
