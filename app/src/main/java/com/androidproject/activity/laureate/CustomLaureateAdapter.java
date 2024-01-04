@@ -64,7 +64,7 @@ public class CustomLaureateAdapter extends RecyclerView.Adapter<CustomLaureateAd
                 intent.putExtra("laureate_training", String.valueOf(laureateTraining.get(position)));
                 intent.putExtra("laureate_city", String.valueOf(laureateCity.get(position)));
                 activity.startActivityForResult(intent, 1);
-                ((Activity) context).finish();
+               //  ((Activity) context).finish();
             }
         });
     }
