@@ -57,7 +57,7 @@
         <activity
             android:name=".activity.laureate.EditLaureateActivity"
             android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
-        <activity android:name=".activity.laureate.AddLaureareActivity" />
+        <activity android:name=".activity.laureate.AddLaureateActivity" />
         <activity
             android:name=".activity.auth.LoginActivity"
             android:exported="true">

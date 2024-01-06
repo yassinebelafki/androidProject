@@ -8,26 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.androidproject.R;
-import com.androidproject.activity.laureate.experience.CustomAdapter;
-import com.androidproject.activity.laureate.experience.ExperienceData;
-import com.androidproject.activity.laureate.experience.ListExperienceActivity;
-import com.androidproject.activity.laureate.skill.AddSkills;
-import com.androidproject.activity.laureate.skill.ListSkills;
-import com.androidproject.activity.laureate.skill.SkillsData;
 import com.androidproject.models.Laureate.Laureate;
-import com.androidproject.models.Laureate.LaureateExperience;
-import com.androidproject.models.Laureate.LaureateSkill;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -138,7 +127,7 @@ public class SchoolDashboardActivity extends AppCompatActivity {
 
     public void goToAddExperience(View view) {
         finish();
-        Intent intent = new Intent(SchoolDashboardActivity.this, AddLaureareActivity.class);
+        Intent intent = new Intent(SchoolDashboardActivity.this, AddLaureateActivity.class);
         startActivity(intent);
     }
 }

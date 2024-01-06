@@ -11,15 +11,26 @@ import lombok.Setter;
 
 
 public class LaureateSkill {
+
+    private Integer id;
     private String type;
     private String name;
 
-    public LaureateSkill(String type, String name) {
-       this.type = type;
+    public LaureateSkill(Integer id,String type, String name) {
+        this.id = id;
+        this.type = type;
         this.name = name;
     }
 
     public LaureateSkill() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getType() {

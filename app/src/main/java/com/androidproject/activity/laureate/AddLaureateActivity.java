@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.androidproject.R;
-import com.androidproject.activity.laureate.experience.AddExperienceActivity;
 import com.androidproject.activity.laureate.experience.ExperienceData;
 import com.androidproject.activity.laureate.experience.ListExperienceActivity;
 import com.androidproject.activity.laureate.interest.InterestData;
@@ -20,7 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AddLaureareActivity extends AppCompatActivity {
+public class AddLaureateActivity extends AppCompatActivity {
     private TextInputEditText laureateNameInput,laureateAgeInput,laureateEmailInput
             , laureatePhoneInput , laureateCityInput , laureateTrainingInput;
     String laureateName,laureateAge,laureateEmail
@@ -39,17 +38,17 @@ public class AddLaureareActivity extends AppCompatActivity {
     }
 
     public void goToExperienceList(View view) {
-        Intent intent = new Intent(AddLaureareActivity.this, ListExperienceActivity.class);
+        Intent intent = new Intent(AddLaureateActivity.this, ListExperienceActivity.class);
         startActivity(intent);
     }
 
     public void goToSkillsList(View view) {
-        Intent intent = new Intent(AddLaureareActivity.this, ListSkills.class);
+        Intent intent = new Intent(AddLaureateActivity.this, ListSkills.class);
         startActivity(intent);
     }
 
     public void goToInterestsList(View view) {
-        Intent intent = new Intent(AddLaureareActivity.this, ListInterest.class);
+        Intent intent = new Intent(AddLaureateActivity.this, ListInterest.class);
         startActivity(intent);
     }
 
@@ -79,7 +78,7 @@ public class AddLaureareActivity extends AppCompatActivity {
                         ExperienceData.laureateExperienceList.clear();
                         Toast.makeText(getApplicationContext(), "New Laureate is added successfully!", Toast.LENGTH_SHORT).show();
                         finish();
-                        Intent intent = new Intent(AddLaureareActivity.this, SchoolDashboardActivity.class);
+                        Intent intent = new Intent(AddLaureateActivity.this, SchoolDashboardActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplicationContext(), "Error while adding new Laureate!", Toast.LENGTH_SHORT).show();

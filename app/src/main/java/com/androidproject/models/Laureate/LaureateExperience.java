@@ -10,14 +10,16 @@ import lombok.Setter;
 
 
 public class LaureateExperience {
-    private Long id;
+    private Integer id;
     private String title;
     private String start_date;
     private String end_date;
     private String description;
 
 
-    public LaureateExperience(Long id,String title, String start_date, String end_date, String description) {
+
+
+    public LaureateExperience(Integer id, String title, String start_date, String end_date, String description) {
         this.id = id;
         this.title = title;
         this.start_date = start_date;
@@ -34,11 +36,11 @@ public class LaureateExperience {
     public LaureateExperience() {
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

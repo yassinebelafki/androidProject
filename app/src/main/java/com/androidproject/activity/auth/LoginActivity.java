@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidproject.R;
-import com.androidproject.activity.laureate.AddLaureareActivity;
+import com.androidproject.activity.laureate.AddLaureateActivity;
 import com.androidproject.activity.laureate.SchoolDashboardActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                             loadingPB.setVisibility(View.GONE);
                             Toast.makeText(LoginActivity.this, "Login Successful..", Toast.LENGTH_SHORT).show();
                             //on below line we are opening our mainactivity.
-                            Intent i = new Intent(LoginActivity.this, AddLaureareActivity.class);
+                            Intent i = new Intent(LoginActivity.this, AddLaureateActivity.class);
                             startActivity(i);
                             finish();
                         } else {
