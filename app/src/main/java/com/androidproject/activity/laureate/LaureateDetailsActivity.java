@@ -19,6 +19,8 @@ import com.androidproject.activity.laureate.interest.ListInterest;
 import com.androidproject.activity.laureate.skill.EditSkills;
 import com.androidproject.activity.laureate.skill.ListSkills;
 import com.androidproject.activity.laureate.skill.SkillsData;
+import com.androidproject.dbLocal.MyDatabaseHelper;
+import com.androidproject.dbLocal.script.LaureateScript;
 import com.androidproject.models.Laureate.Laureate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -153,7 +155,8 @@ public class LaureateDetailsActivity extends AppCompatActivity {
 //        }).addOnFailureListener(e -> {
 //            Toast.makeText(this, "Error while deleting Laureate..", Toast.LENGTH_SHORT).show();
 //        });
-
+        MyDatabaseHelper myDB = new MyDatabaseHelper(LaureateDetailsActivity.this);
+        myDB.deleteOneElement(String.valueOf(myLaureate.getLaureateId()), LaureateScript.TABLE_NAME , LaureateScript.ID_COLUMN);
         startActivity(new Intent(LaureateDetailsActivity.this, SchoolDashboardActivity.class));
 
     }

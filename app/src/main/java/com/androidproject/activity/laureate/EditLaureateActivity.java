@@ -15,9 +15,13 @@ import com.androidproject.activity.laureate.interest.InterestData;
 import com.androidproject.activity.laureate.interest.ListInterest;
 import com.androidproject.activity.laureate.skill.ListSkills;
 import com.androidproject.activity.laureate.skill.SkillsData;
+import com.androidproject.dbLocal.MyDatabaseHelper;
+import com.androidproject.models.Laureate.Laureate;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class EditLaureateActivity extends AppCompatActivity {
     private TextInputEditText laureateNameInput,laureateAgeInput,laureateEmailInput
@@ -27,6 +31,7 @@ public class EditLaureateActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    Laureate oldLaureate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +54,17 @@ public class EditLaureateActivity extends AppCompatActivity {
         uniqueLaureateId = LaureateData.laureateUniqueIdentifier;
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("laureates");
+        cloneEditedLaureate();
+    }
 
+    private void cloneEditedLaureate() {
+        oldLaureate = new Laureate(LaureateData.editedLaureate.getName(),LaureateData.editedLaureate.getAge(),
+                LaureateData.editedLaureate.getEmail(),
+                LaureateData.editedLaureate.getPhone(),LaureateData.editedLaureate.getTraining(),
+                LaureateData.editedLaureate.getCity(),
+                new ArrayList<>(LaureateData.editedLaureate.getLaureateExperiences()),
+                new ArrayList<>(LaureateData.editedLaureate.getLaureateInterests()),
+                new ArrayList<>(LaureateData.editedLaureate.getLaureateSkills()));
     }
 
     public void updateLaureate(View view) {
@@ -62,6 +77,8 @@ public class EditLaureateActivity extends AppCompatActivity {
         LaureateData.editedLaureate.setLaureateExperiences(ExperienceData.laureateExperienceList);
         LaureateData.editedLaureate.setLaureateInterests(InterestData.laureateInterests);
         LaureateData.editedLaureate.setLaureateSkills(SkillsData.laureateSkills);
+        MyDatabaseHelper myDB = new MyDatabaseHelper(EditLaureateActivity.this);
+        myDB.updateLaureate(LaureateData.editedLaureate , oldLaureate);
         databaseReference = firebaseDatabase.getReference("laureates").child(uniqueLaureateId);
         databaseReference.setValue(LaureateData.editedLaureate).addOnSuccessListener(aVoid -> {
             Toast.makeText(this, "Laureate Updated..", Toast.LENGTH_SHORT).show();

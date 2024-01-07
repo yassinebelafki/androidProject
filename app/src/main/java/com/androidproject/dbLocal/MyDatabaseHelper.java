@@ -21,6 +21,7 @@ import com.androidproject.models.Laureate.LaureateSkill;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
@@ -240,11 +241,11 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     public void deleteOneElement(String row_id,String table_name,String id_column_name){
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.delete(table_name, table_name+"=?", new String[]{row_id});
+        long result = db.delete(table_name, id_column_name+"=?", new String[]{row_id});
         if(result == -1){
             Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(context, "Element Successfully Deleted.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Element Successfully Deleted.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -330,8 +331,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
+                int id = cursor.getInt(cursor.getColumnIndex(LaureateInterestScript.ID_COLUMN));
                 String name = cursor.getString(cursor.getColumnIndex(LaureateInterestScript.NAME_COLUMN));
-                LaureateInterests interest = new LaureateInterests(name);
+                LaureateInterests interest = new LaureateInterests(id,name);
                 interestList.add(interest);
             } while (cursor.moveToNext());
 
@@ -372,5 +374,82 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return skillList;
+    }
+
+    public void updateLaureate(Laureate laureate, Laureate oldLaureate) {
+        //update the static fields of Laureate
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues laureateValues = new ContentValues();
+        laureateValues.put(LaureateScript.NAME_COLUMN, laureate.getName());
+        laureateValues.put(LaureateScript.EMAIL_COLUMN, laureate.getEmail());
+        laureateValues.put(LaureateScript.PHONE_COLUMN, laureate.getPhone());
+        laureateValues.put(LaureateScript.TRAINING_COLUMN, laureate.getTraining());
+        laureateValues.put(LaureateScript.CITY_COLUMN, laureate.getCity());
+        laureateValues.put(LaureateScript.AGE_COLUMN, laureate.getAge());
+        long result = db.update(LaureateScript.TABLE_NAME, laureateValues, LaureateScript.ID_COLUMN+"=?", new String[]{String.valueOf(laureate.getLaureateId())});
+        if(result == -1){
+            Toast.makeText(context, "Failed to update laureate!", Toast.LENGTH_SHORT).show();
+        }else {
+            //Experiences
+            //delete The Missing values from the old laureate
+            deleteMissingExperiences(laureate.getLaureateExperiences() , oldLaureate.getLaureateExperiences());
+            //update and add the new Experiences
+            updateAndAddNewExperiences(laureate.getLaureateExperiences(),laureate.getLaureateId());
+
+            //Skills
+            //delete The Missing values from the old Skills
+            deleteMissingSkills(laureate.getLaureateSkills() , oldLaureate.getLaureateSkills());
+            //update and add the new Experiences
+            updateAndAddNewExperiences(laureate.getLaureateExperiences(),laureate.getLaureateId());
+
+            //delete The Missing values from the old laureate
+            deleteMissingExperiences(laureate.getLaureateExperiences() , oldLaureate.getLaureateExperiences());
+            //update and add the new Experiences
+            updateAndAddNewExperiences(laureate.getLaureateExperiences(),laureate.getLaureateId());
+
+
+        }
+    }
+
+    private void deleteMissingSkills(List<LaureateSkill> laureateSkills, List<LaureateSkill> laureateSkills1) {
+        List<Integer> oldIds = fetchExperienceIds(oldLaureateExperiences);
+        List<Integer> newIds = fetchExperienceIds(newLaureateExperiences);
+        List<Integer> missingIds = new ArrayList<>(oldIds);
+        missingIds.removeAll(newIds);
+        if (missingIds.isEmpty())
+            return;
+        for (Integer idToDelete : missingIds){
+            deleteOneElement(String.valueOf(idToDelete), LaureateExperienceScript.TABLE_NAME , LaureateExperienceScript.ID_COLUMN );
+        }
+    }
+
+    private void updateAndAddNewExperiences(List<LaureateExperience> laureateExperiences, Integer laureateId) {
+        for (LaureateExperience laureateExperience:laureateExperiences) {
+            if (laureateExperience.getId() == null){
+                addExperience(laureateExperience , Long.valueOf(laureateId));
+            }
+            else {
+                updateExperience(laureateExperience);
+            }
+        }
+    }
+
+    private void deleteMissingExperiences(List<LaureateExperience> newLaureateExperiences, List<LaureateExperience> oldLaureateExperiences) {
+        List<Integer> oldIds = fetchExperienceIds(oldLaureateExperiences);
+        List<Integer> newIds = fetchExperienceIds(newLaureateExperiences);
+        List<Integer> missingIds = new ArrayList<>(oldIds);
+        missingIds.removeAll(newIds);
+        if (missingIds.isEmpty())
+            return;
+        for (Integer idToDelete : missingIds){
+            deleteOneElement(String.valueOf(idToDelete), LaureateExperienceScript.TABLE_NAME , LaureateExperienceScript.ID_COLUMN );
+        }
+    }
+
+    private List<Integer> fetchExperienceIds(List<LaureateExperience> laureateExperiences) {
+        return laureateExperiences.stream()
+                .filter(laureateExperience -> laureateExperience.getId() != null)
+                .map(LaureateExperience::getId)
+                .collect(Collectors.toList());
     }
 }
