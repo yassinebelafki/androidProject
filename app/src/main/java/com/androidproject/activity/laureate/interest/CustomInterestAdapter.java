@@ -75,7 +75,7 @@ public class CustomInterestAdapter extends RecyclerView.Adapter<CustomInterestAd
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
 //            experience_id = itemView.findViewById(R.id.experience_id);
-            interest_name = itemView.findViewById(R.id.experience_title);
+            interest_name = itemView.findViewById(R.id.element_title);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

@@ -3,17 +3,10 @@ package com.androidproject.models.Laureate;
 import java.util.List;
 import java.util.Objects;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-
 
 public class Laureate {
 
-    String laureateId;
+    Integer laureateId;
     private String name;
     private Integer age;
     private String email;
@@ -40,7 +33,7 @@ public class Laureate {
         this.laureateInterests = laureateInterests;
         this.laureateSkills = laureateSkills;
     }
-    public Laureate(String laureateId ,  String name, Integer age, String email, String phone, String training, String city,
+    public Laureate(Integer laureateId , String name, Integer age, String email, String phone, String training, String city,
                     List<LaureateExperience> laureateExperiences, List<LaureateInterests> laureateInterests,
                     List<LaureateSkill> laureateSkills) {
         this.laureateId = laureateId;
@@ -127,11 +120,11 @@ public class Laureate {
         this.laureateSkills = laureateSkills;
     }
 
-    public String getLaureateId() {
+    public Integer getLaureateId() {
         return laureateId;
     }
 
-    public void setLaureateId(String laureateId) {
+    public void setLaureateId(Integer laureateId) {
         this.laureateId = laureateId;
     }
 

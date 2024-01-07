@@ -81,9 +81,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
 //            experience_id = itemView.findViewById(R.id.experience_id);
-            experience_title = itemView.findViewById(R.id.experience_title);
-            experience_start_date = itemView.findViewById(R.id.experience_start_date);
-            experience_end_date = itemView.findViewById(R.id.experience_end_date);
+            experience_title = itemView.findViewById(R.id.element_title);
+            experience_start_date = itemView.findViewById(R.id.element_sub_title);
+            experience_end_date = itemView.findViewById(R.id.element_sub_title2);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

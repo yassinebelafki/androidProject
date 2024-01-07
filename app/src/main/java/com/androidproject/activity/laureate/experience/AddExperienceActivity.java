@@ -32,8 +32,6 @@ public class AddExperienceActivity extends AppCompatActivity {
         LaureateExperience laureateExperience = new LaureateExperience(experienceTitle.getText().toString(),
                 experienceDescription.getText().toString(),
                                                         experienceStartDate.getText().toString(),experienceEndDate.getText().toString());
-        MyDatabaseHelper myDB = new MyDatabaseHelper(AddExperienceActivity.this);
-        myDB.addExperience(laureateExperience);
         //using local list :
         ExperienceData.laureateExperienceList.add(laureateExperience);
         finish();

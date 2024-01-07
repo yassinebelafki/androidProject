@@ -8,9 +8,11 @@ public class LaureateScript {
      public static final String PHONE_COLUMN = "phone";
      public static final String TRAINING_COLUMN = "training";
      public static final String CITY_COLUMN = "city";
+     public static final String AGE_COLUMN = "age";
      public static final String CREATE_LAUREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
             " (" + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             NAME_COLUMN + " TEXT, " +
+             AGE_COLUMN + " INTEGER, " +
             EMAIL_COLUMN + " TEXT, " +
             PHONE_COLUMN + " TEXT, " +
              CITY_COLUMN + " TEXT, " +

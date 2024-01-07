@@ -26,14 +26,14 @@ public class CustomLaureateAdapter extends RecyclerView.Adapter<CustomLaureateAd
 
     private Context context;
     private Activity activity;
-    private ArrayList laureateNames, laureateTraining, laureateCity;
+    private ArrayList laureateIds,laureateNames, laureateTraining, laureateCity;
 
-    CustomLaureateAdapter(Activity activity, Context context,
+    CustomLaureateAdapter(Activity activity, Context context,ArrayList laureateIds,
                           ArrayList laureateNames, ArrayList laureateTraining,
                           ArrayList laureateCity){
         this.activity = activity;
         this.context = context;
-//        this.experience_ids = experience_ids;
+        this.laureateIds = laureateIds;
         this.laureateNames = laureateNames;
         this.laureateTraining = laureateTraining;
         this.laureateCity = laureateCity;
@@ -50,7 +50,7 @@ public class CustomLaureateAdapter extends RecyclerView.Adapter<CustomLaureateAd
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-//        holder.experience_id.setText(String.valueOf(experience_ids.get(position)));
+        holder.laureate_id.setText(String.valueOf(laureateIds.get(position)));
         holder.laureate_name.setText(String.valueOf(laureateNames.get(position)));
         holder.laureate_training.setText("Training : " +  String.valueOf(laureateTraining.get(position)));
         holder.laureate_city.setText("city : " +String.valueOf(laureateCity.get(position)));
@@ -59,10 +59,10 @@ public class CustomLaureateAdapter extends RecyclerView.Adapter<CustomLaureateAd
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, LaureateDetailsActivity.class);
-//                intent.putExtra("experience_id", String.valueOf(experience_ids.get(position)));
-                intent.putExtra("laureate_name", String.valueOf(laureateNames.get(position)));
-                intent.putExtra("laureate_training", String.valueOf(laureateTraining.get(position)));
-                intent.putExtra("laureate_city", String.valueOf(laureateCity.get(position)));
+                intent.putExtra("laureate_id", String.valueOf(laureateIds.get(position)));
+//                intent.putExtra("laureate_name", String.valueOf(laureateNames.get(position)));
+//                intent.putExtra("laureate_training", String.valueOf(laureateTraining.get(position)));
+//                intent.putExtra("laureate_city", String.valueOf(laureateCity.get(position)));
                 activity.startActivityForResult(intent, 1);
                //  ((Activity) context).finish();
             }
@@ -71,20 +71,20 @@ public class CustomLaureateAdapter extends RecyclerView.Adapter<CustomLaureateAd
 
     @Override
     public int getItemCount() {
-        return laureateNames.size();
+        return laureateIds.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView laureate_name, laureate_training, laureate_city;
+        TextView laureate_id,laureate_name, laureate_training, laureate_city;
         LinearLayout mainLayout;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-//            experience_id = itemView.findViewById(R.id.experience_id);
-            laureate_name = itemView.findViewById(R.id.experience_title);
-            laureate_training = itemView.findViewById(R.id.experience_start_date);
-            laureate_city = itemView.findViewById(R.id.experience_end_date);
+            laureate_id = itemView.findViewById(R.id.element_id);
+            laureate_name = itemView.findViewById(R.id.element_title);
+            laureate_training = itemView.findViewById(R.id.element_sub_title);
+            laureate_city = itemView.findViewById(R.id.element_sub_title2);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

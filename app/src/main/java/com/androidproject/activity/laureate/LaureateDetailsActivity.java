@@ -56,38 +56,37 @@ public class LaureateDetailsActivity extends AppCompatActivity {
         textViewSkill = findViewById(R.id.textViewSkills);
         getAndSetIntentData();
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("laureates");
-
-        String laureateNameToDelete = myLaureate.getName();
-        // Create a query to find the Laureate with a specific name
-        Query query = databaseReference.orderByChild("name").equalTo(laureateNameToDelete);
-
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    // Retrieve the key for the Laureate with the specified name
-                     uniqueIdentifier = snapshot.getKey();
-                    LaureateData.laureateUniqueIdentifier = uniqueIdentifier;
-                    databaseReference = firebaseDatabase.getReference("laureates").child(uniqueIdentifier);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Handle errors
-            }
-        });
+//        firebaseDatabase = FirebaseDatabase.getInstance();
+//        databaseReference = firebaseDatabase.getReference("laureates");
+//
+//        String laureateNameToDelete = myLaureate.getName();
+//        // Create a query to find the Laureate with a specific name
+//        Query query = databaseReference.orderByChild("name").equalTo(laureateNameToDelete);
+//
+//        query.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    // Retrieve the key for the Laureate with the specified name
+//                     uniqueIdentifier = snapshot.getKey();
+//                    LaureateData.laureateUniqueIdentifier = uniqueIdentifier;
+//                    databaseReference = firebaseDatabase.getReference("laureates").child(uniqueIdentifier);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Handle errors
+//            }
+//        });
 
     }
 
     void getAndSetIntentData(){
-        if(getIntent().hasExtra("laureate_name")){
+        if(getIntent().hasExtra("laureate_id")){
             Optional<Laureate> result = LaureateData.laureateList.stream().filter(
-                    laureate -> laureate.getName().equals(getIntent().getStringExtra("laureate_name")) &&
-                            laureate.getTraining().equals(getIntent().getStringExtra("laureate_training")) &&
-                            laureate.getCity().equals(getIntent().getStringExtra("laureate_city"))).findFirst();
+                    laureate -> laureate.getLaureateId().equals(Integer.valueOf(getIntent().getStringExtra("laureate_id")))).findFirst();
+
             if (result.isPresent()){
                 myLaureate = result.get();
                 ExperienceData.laureateExperienceList = myLaureate.getLaureateExperiences();
@@ -149,11 +148,12 @@ public class LaureateDetailsActivity extends AppCompatActivity {
 
     public void executeDeletion(){
         //on below line calling a method to delete the course.
-        databaseReference.removeValue().addOnSuccessListener(aVoid -> {
-            Toast.makeText(this, "Laureate Deleted..", Toast.LENGTH_SHORT).show();
-        }).addOnFailureListener(e -> {
-            Toast.makeText(this, "Error while deleting Laureate..", Toast.LENGTH_SHORT).show();
-        });;
+//        databaseReference.removeValue().addOnSuccessListener(aVoid -> {
+//            Toast.makeText(this, "Laureate Deleted..", Toast.LENGTH_SHORT).show();
+//        }).addOnFailureListener(e -> {
+//            Toast.makeText(this, "Error while deleting Laureate..", Toast.LENGTH_SHORT).show();
+//        });
+
         startActivity(new Intent(LaureateDetailsActivity.this, SchoolDashboardActivity.class));
 
     }

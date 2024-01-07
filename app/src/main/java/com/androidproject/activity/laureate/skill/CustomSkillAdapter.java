@@ -79,8 +79,8 @@ public class CustomSkillAdapter extends RecyclerView.Adapter<CustomSkillAdapter.
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
 //            experience_id = itemView.findViewById(R.id.experience_id);
-            skill_name = itemView.findViewById(R.id.experience_title);
-            skill_type = itemView.findViewById(R.id.experience_start_date);
+            skill_name = itemView.findViewById(R.id.element_title);
+            skill_type = itemView.findViewById(R.id.element_sub_title);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
             Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);

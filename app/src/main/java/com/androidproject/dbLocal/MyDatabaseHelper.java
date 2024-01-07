@@ -14,6 +14,7 @@ import com.androidproject.dbLocal.script.LaureateExperienceScript;
 import com.androidproject.dbLocal.script.LaureateInterestScript;
 import com.androidproject.dbLocal.script.LaureateScript;
 import com.androidproject.dbLocal.script.LaureateSkillScript;
+import com.androidproject.models.Laureate.Laureate;
 import com.androidproject.models.Laureate.LaureateExperience;
 import com.androidproject.models.Laureate.LaureateInterests;
 import com.androidproject.models.Laureate.LaureateSkill;
@@ -56,14 +57,41 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public long addLaureateWithDetails(Laureate laureate) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        // Step 1: Insert basic laureate information
+        ContentValues laureateValues = new ContentValues();
+        laureateValues.put(LaureateScript.NAME_COLUMN, laureate.getName());
+        laureateValues.put(LaureateScript.EMAIL_COLUMN, laureate.getEmail());
+        laureateValues.put(LaureateScript.PHONE_COLUMN, laureate.getPhone());
+        laureateValues.put(LaureateScript.TRAINING_COLUMN, laureate.getTraining());
+        laureateValues.put(LaureateScript.CITY_COLUMN, laureate.getCity());
+        laureateValues.put(LaureateScript.AGE_COLUMN, laureate.getAge());
 
+        long laureateId = db.insert(LaureateScript.TABLE_NAME, null, laureateValues);
 
-
-
-
-
-
+        // Step 2: Insert experiences
+        if (laureate.getLaureateExperiences() != null) {
+            for (LaureateExperience experience : laureate.getLaureateExperiences()) {
+               addExperience(experience,laureateId);
+            }
+        }
+        // Step 3: Insert interests
+        if (laureate.getLaureateInterests() != null) {
+            for (LaureateInterests interest : laureate.getLaureateInterests()) {
+                addInterest(interest,laureateId);
+            }
+        }
+        // Step 4: Insert skills
+        if (laureate.getLaureateSkills() != null) {
+            for (LaureateSkill skill : laureate.getLaureateSkills()) {
+                addSkill(skill,laureateId);
+            }
+        }
+        db.close();
+        return laureateId;
+    }
 
 
     public void addSkill(LaureateSkill laureateSkill , Long laureate_id){
@@ -76,8 +104,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(LaureateSkillScript.TABLE_NAME,null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(context, "skill Added Successfully!", Toast.LENGTH_SHORT).show();
         }
     }
     public void addInterest(LaureateInterests laureateInterest , Long laureate_id){
@@ -89,9 +115,44 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(LaureateInterestScript.TABLE_NAME,null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(context, "Interest Added Successfully!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @SuppressLint("Range")
+    public List<Laureate> getAllLaureates() {
+        List<Laureate> laureateList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String[] columns = {LaureateScript.ID_COLUMN, LaureateScript.NAME_COLUMN,LaureateScript.AGE_COLUMN, LaureateScript.EMAIL_COLUMN,
+                LaureateScript.PHONE_COLUMN, LaureateScript.TRAINING_COLUMN, LaureateScript.CITY_COLUMN};
+
+        Cursor cursor = db.query(LaureateScript.TABLE_NAME, columns, null, null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                Integer laureateId = cursor.getInt(cursor.getColumnIndex(LaureateScript.ID_COLUMN));
+                String name = cursor.getString(cursor.getColumnIndex(LaureateScript.NAME_COLUMN));
+                String email = cursor.getString(cursor.getColumnIndex(LaureateScript.EMAIL_COLUMN));
+                String phone = cursor.getString(cursor.getColumnIndex(LaureateScript.PHONE_COLUMN));
+                String training = cursor.getString(cursor.getColumnIndex(LaureateScript.TRAINING_COLUMN));
+                String city = cursor.getString(cursor.getColumnIndex(LaureateScript.CITY_COLUMN));
+                Integer age = cursor.getInt(cursor.getColumnIndex(LaureateScript.AGE_COLUMN));
+                // Retrieve experiences, interests, and skills for the current laureate
+                List<LaureateExperience> experiences = getExperiencesForLaureate(laureateId);
+                List<LaureateInterests> interests = getInterestsForLaureate(laureateId);
+                List<LaureateSkill> skills = getSkillsForLaureate(laureateId);
+
+                Laureate laureate = new Laureate(laureateId,name,age, email, phone, training, city, experiences, interests, skills);
+                laureateList.add(laureate);
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+        }
+
+        db.close();
+
+        return laureateList;
     }
 
 
@@ -109,8 +170,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         long result = db.insert(LaureateExperienceScript.TABLE_NAME,null, cv);
         if(result == -1){
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(context, "Experience Added Successfully!", Toast.LENGTH_SHORT).show();
         }
     }
 

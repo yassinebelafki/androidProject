@@ -22,6 +22,11 @@ public class LaureateSkill {
         this.name = name;
     }
 
+    public LaureateSkill(String type, String name) {
+        this.type = type;
+        this.name = name;
+    }
+
     public LaureateSkill() {
     }
 
