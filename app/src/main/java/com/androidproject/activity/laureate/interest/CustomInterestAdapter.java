@@ -28,11 +28,13 @@ public class CustomInterestAdapter extends RecyclerView.Adapter<CustomInterestAd
     private Activity activity;
     private ArrayList  interest_names;
 
+    private String no_detail_shown;
+
     CustomInterestAdapter(Activity activity, Context context,
-                          ArrayList interest_names){
+                          ArrayList interest_names,String no_detail_shown){
         this.activity = activity;
         this.context = context;
-//        this.experience_ids = experience_ids;
+        this.no_detail_shown = no_detail_shown;
         this.interest_names = interest_names;
     }
 
@@ -47,17 +49,17 @@ public class CustomInterestAdapter extends RecyclerView.Adapter<CustomInterestAd
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-//        holder.experience_id.setText(String.valueOf(experience_ids.get(position)));
         holder.interest_name.setText(String.valueOf(interest_names.get(position)));
         //Recyclerview onClickListener
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditInterest.class);
-//                intent.putExtra("experience_id", String.valueOf(experience_ids.get(position)));
-                intent.putExtra("interest_name", String.valueOf(interest_names.get(position)));
-                activity.startActivityForResult(intent, 1);
-                ((Activity) context).finish();
+                if (no_detail_shown.equals("false")){
+                    Intent intent = new Intent(context, EditInterest.class);
+                    intent.putExtra("interest_name", String.valueOf(interest_names.get(position)));
+                    activity.startActivityForResult(intent, 1);
+                    ((Activity) context).finish();
+                }
             }
         });
     }

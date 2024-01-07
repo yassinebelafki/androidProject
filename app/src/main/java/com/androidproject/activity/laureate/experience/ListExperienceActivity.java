@@ -30,6 +30,8 @@ public class ListExperienceActivity extends AppCompatActivity {
 
     FloatingActionButton floatingActionButton;
 
+    String no_detail_shown;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,19 +47,22 @@ public class ListExperienceActivity extends AppCompatActivity {
         experience_start_dates = new ArrayList<>();
         experience_end_dates = new ArrayList<>();
         experience_descriptions = new ArrayList<>();
-
-        storeDataInArrays();
-
-        customAdapter = new CustomAdapter(ListExperienceActivity.this,this,
-                 experience_titles, experience_start_dates,
-                experience_end_dates);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ListExperienceActivity.this));
-
         floatingActionButton = findViewById(R.id.add_button);
         if (getIntent().hasExtra("no_add_btn")){
             floatingActionButton.setVisibility(View.INVISIBLE);
+            no_detail_shown = "true";
         }
+        else {
+            no_detail_shown = "false";
+        }
+        storeDataInArrays();
+        customAdapter = new CustomAdapter(ListExperienceActivity.this,this,
+                 experience_titles, experience_start_dates,
+                experience_end_dates,no_detail_shown);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ListExperienceActivity.this));
+
+
 
     }
     void storeDataInArrays(){

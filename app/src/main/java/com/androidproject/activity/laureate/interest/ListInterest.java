@@ -32,6 +32,8 @@ public class ListInterest extends AppCompatActivity {
     ArrayList<String> interest_names;
     CustomInterestAdapter customAdapter;
     FloatingActionButton floatingActionButton;
+    String no_detail_shown;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +46,19 @@ public class ListInterest extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerInterestView);
         interest_names = new ArrayList<>();
         storeDataInArrays();
-        customAdapter = new CustomInterestAdapter(ListInterest.this,this,
-                interest_names);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ListInterest.this));
         floatingActionButton = findViewById(R.id.add_button);
         if (getIntent().hasExtra("no_add_btn")){
             floatingActionButton.setVisibility(View.INVISIBLE);
+            no_detail_shown = "true";
         }
+        else {
+            no_detail_shown = "false";
+        }
+        customAdapter = new CustomInterestAdapter(ListInterest.this,this,
+                interest_names , no_detail_shown);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ListInterest.this));
+
     }
     void storeDataInArrays(){
         if (SkillsData.laureateSkills == null || InterestData.laureateInterests.isEmpty()){

@@ -29,6 +29,7 @@ public class ListSkills extends AppCompatActivity {
     CustomSkillAdapter customAdapter;
     FloatingActionButton floatingActionButton;
 
+    String no_detail_shown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +47,19 @@ public class ListSkills extends AppCompatActivity {
 
         storeDataInArrays();
 
-        customAdapter = new CustomSkillAdapter(ListSkills.this,this,
-                skill_names, skill_types);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(ListSkills.this));
-
         floatingActionButton = findViewById(R.id.add_button);
         if (getIntent().hasExtra("no_add_btn")){
             floatingActionButton.setVisibility(View.INVISIBLE);
+            no_detail_shown = "true";
         }
+        else {
+            no_detail_shown = "false";
+        }
+        customAdapter = new CustomSkillAdapter(ListSkills.this,this,
+                skill_names, skill_types , no_detail_shown);
+        recyclerView.setAdapter(customAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(ListSkills.this));
+
     }
 
     void storeDataInArrays(){

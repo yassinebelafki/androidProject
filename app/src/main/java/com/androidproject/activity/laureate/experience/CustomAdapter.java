@@ -27,12 +27,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Activity activity;
     private ArrayList  experience_titles, experience_start_dates, experience_end_dates;
 
+    private String no_detail_shown;
     CustomAdapter(Activity activity, Context context,
                   ArrayList experience_titles, ArrayList experience_start_dates,
-                  ArrayList experience_end_dates){
+                  ArrayList experience_end_dates,String no_detail_shown){
         this.activity = activity;
         this.context = context;
-//        this.experience_ids = experience_ids;
+        this.no_detail_shown = no_detail_shown;
         this.experience_titles = experience_titles;
         this.experience_start_dates = experience_start_dates;
         this.experience_end_dates = experience_end_dates;
@@ -49,7 +50,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-//        holder.experience_id.setText(String.valueOf(experience_ids.get(position)));
         holder.experience_title.setText(String.valueOf(experience_titles.get(position)));
         holder.experience_start_date.setText("from : " +  String.valueOf(experience_start_dates.get(position)));
         holder.experience_end_date.setText("to : " +String.valueOf(experience_end_dates.get(position)));
@@ -57,13 +57,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditExperienceActivity.class);
-//                intent.putExtra("experience_id", String.valueOf(experience_ids.get(position)));
-                intent.putExtra("experience_title", String.valueOf(experience_titles.get(position)));
-                intent.putExtra("experience_start_date", String.valueOf(experience_start_dates.get(position)));
-                intent.putExtra("experience_end_date", String.valueOf(experience_end_dates.get(position)));
-                activity.startActivityForResult(intent, 1);
-                ((Activity) context).finish();
+                if (no_detail_shown.equals("false")){
+                    Intent intent = new Intent(context, EditExperienceActivity.class);
+                    intent.putExtra("experience_title", String.valueOf(experience_titles.get(position)));
+                    intent.putExtra("experience_start_date", String.valueOf(experience_start_dates.get(position)));
+                    intent.putExtra("experience_end_date", String.valueOf(experience_end_dates.get(position)));
+                    activity.startActivityForResult(intent, 1);
+                    ((Activity) context).finish();
+                }
             }
         });
     }

@@ -30,7 +30,7 @@
         <activity
             android:name=".activity.laureate.interest.ListInterest"
             android:exported="false"
-            android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
+         />
         <activity
             android:name=".activity.laureate.skill.AddSkills"
             android:exported="false"
@@ -42,7 +42,7 @@
         <activity
             android:name=".activity.laureate.skill.ListSkills"
             android:exported="false"
-            android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
+             />
         <activity
             android:name=".activity.laureate.experience.EditExperienceActivity"
             android:parentActivityName=".activity.laureate.experience.ListExperienceActivity" />
@@ -51,7 +51,7 @@
             android:parentActivityName=".activity.laureate.experience.ListExperienceActivity" />
         <activity
             android:name=".activity.laureate.experience.ListExperienceActivity"
-            android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
+         />
         <activity android:name=".activity.auth.RegisterActivity" />
         <activity android:name=".activity.laureate.SchoolDashboardActivity" />
         <activity

@@ -28,11 +28,13 @@ public class CustomSkillAdapter extends RecyclerView.Adapter<CustomSkillAdapter.
     private Context context;
     private Activity activity;
     private ArrayList skill_names, skill_types;
+    private String no_detail_shown;
 
     CustomSkillAdapter(Activity activity, Context context,
-                       ArrayList skill_names, ArrayList skill_types){
+                       ArrayList skill_names, ArrayList skill_types,String no_detail_shown){
         this.activity = activity;
         this.context = context;
+        this.no_detail_shown = no_detail_shown;
         this.skill_names = skill_names;
         this.skill_types = skill_types;
     }
@@ -48,19 +50,19 @@ public class CustomSkillAdapter extends RecyclerView.Adapter<CustomSkillAdapter.
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-//        holder.experience_id.setText(String.valueOf(experience_ids.get(position)));
         holder.skill_name.setText(String.valueOf(skill_names.get(position)));
         holder.skill_type.setText("type : " +  String.valueOf(skill_types.get(position)));
         //Recyclerview onClickListener
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditSkills.class);
-//                intent.putExtra("experience_id", String.valueOf(experience_ids.get(position)));
-                intent.putExtra("skill_name", String.valueOf(skill_names.get(position)));
-                intent.putExtra("skill_type", String.valueOf(skill_types.get(position)));
-                activity.startActivityForResult(intent, 1);
-                ((Activity) context).finish();
+                if (no_detail_shown.equals("false")){
+                    Intent intent = new Intent(context, EditSkills.class);
+                    intent.putExtra("skill_name", String.valueOf(skill_names.get(position)));
+                    intent.putExtra("skill_type", String.valueOf(skill_types.get(position)));
+                    activity.startActivityForResult(intent, 1);
+                    ((Activity) context).finish();
+                }
             }
         });
     }
