@@ -1,5 +1,6 @@
 package com.androidproject.activity.laureate.experience;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -22,6 +23,8 @@ public class AddExperienceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_experience);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Add new Experience");
     }
 
     public void addNewExperience(View view) {

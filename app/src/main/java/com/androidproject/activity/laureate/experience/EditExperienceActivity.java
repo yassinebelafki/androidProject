@@ -27,6 +27,8 @@ import java.util.Optional;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_experience);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Edit Experience");
         myDatabaseHelper = new MyDatabaseHelper(EditExperienceActivity.this);
         experienceTitle = findViewById(R.id.idEdtexperienceTitle);
         experienceDescription = findViewById(R.id.idEdtexperienceDescription);

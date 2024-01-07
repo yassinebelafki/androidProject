@@ -1,5 +1,6 @@
 package com.androidproject.activity.laureate;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -31,6 +32,8 @@ public class AddLaureateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_laureare);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Add new Laureate");
         laureateNameInput = findViewById(R.id.idEdtLaureateName);
         laureateAgeInput = findViewById(R.id.idEdtLaureateAge);
         laureateEmailInput = findViewById(R.id.idEdtLaureateEmail);

@@ -29,6 +29,8 @@ public class EditInterest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_interest);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Edit Interest");
         interestNameInput = findViewById(R.id.idEdtinterestNameUpdate);
         getAndSetIntentData();
 //        ActionBar ab = getSupportActionBar();

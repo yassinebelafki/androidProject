@@ -1,5 +1,6 @@
 package com.androidproject.activity.laureate.experience;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +34,8 @@ public class ListExperienceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_experience);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("List of experiences");
         empty_imageview = findViewById(R.id.empty_imageview);
         no_data = findViewById(R.id.no_data);
         recyclerView = findViewById(R.id.recyclerView);

@@ -1,5 +1,6 @@
 package com.androidproject.activity.laureate;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,8 @@ public class SchoolDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_school_dashboard);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("School Dashboard");
         laureates = new ArrayList<>();
         empty_imageview = findViewById(R.id.empty_imageview);
         no_data = findViewById(R.id.no_data);

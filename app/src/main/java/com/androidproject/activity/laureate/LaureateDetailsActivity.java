@@ -1,5 +1,6 @@
 package com.androidproject.activity.laureate;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +42,8 @@ public class LaureateDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laureate_details);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Laureate details");
         textViewName = findViewById(R.id.textViewName);
         textViewCity = findViewById(R.id.textViewCity);
         textViewAge = findViewById(R.id.textViewAge);

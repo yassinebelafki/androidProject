@@ -1,5 +1,6 @@
 package com.androidproject.activity.laureate.skill;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,7 +40,8 @@ public class EditSkills extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_skills);
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Edit a Skills");
         spinner = findViewById(R.id.skillTypeUpdate);
         skillNameInput = findViewById(R.id.idEdtskillNameUpdate);
 

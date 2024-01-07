@@ -1,5 +1,6 @@
 package com.androidproject.activity.laureate.interest;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +37,8 @@ public class ListInterest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_interest);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("List of Interests");
         empty_imageview = findViewById(R.id.empty_imageInterestview);
         no_data = findViewById(R.id.no_dataInterest);
         recyclerView = findViewById(R.id.recyclerInterestView);

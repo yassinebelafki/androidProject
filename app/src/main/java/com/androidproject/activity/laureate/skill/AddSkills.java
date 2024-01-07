@@ -1,5 +1,6 @@
 package com.androidproject.activity.laureate.skill;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -25,7 +26,8 @@ public class AddSkills extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_skills);
-
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Add new Skill");
         spinner = findViewById(R.id.skillType);
         String[] options = {"Option 1", "Option 2"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
