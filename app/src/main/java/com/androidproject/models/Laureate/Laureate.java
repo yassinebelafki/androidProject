@@ -1,12 +1,12 @@
 package com.androidproject.models.Laureate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
-public class Laureate {
+public class Laureate extends Entity{
 
-    Integer laureateId;
     private String name;
     private Integer age;
     private String email;
@@ -33,10 +33,10 @@ public class Laureate {
         this.laureateInterests = laureateInterests;
         this.laureateSkills = laureateSkills;
     }
-    public Laureate(Integer laureateId , String name, Integer age, String email, String phone, String training, String city,
+    public Laureate(Integer id, String name, Integer age, String email, String phone, String training, String city,
                     List<LaureateExperience> laureateExperiences, List<LaureateInterests> laureateInterests,
                     List<LaureateSkill> laureateSkills) {
-        this.laureateId = laureateId;
+        super(id);
         this.name = name;
         this.age = age;
         this.email = email;
@@ -99,6 +99,21 @@ public class Laureate {
     public List<LaureateExperience> getLaureateExperiences() {
         return laureateExperiences;
     }
+    public List<Entity> getLaureateExperiencesEntities() {
+        List<Entity> entities=new ArrayList<>();
+        entities.addAll(laureateExperiences);
+        return entities;
+    }
+    public List<Entity> getLaureateSkillsEntities() {
+        List<Entity> entities=new ArrayList<>();
+        entities.addAll(laureateSkills);
+        return entities;
+    }
+    public List<Entity> getLaureateInterestsEntities() {
+        List<Entity> entities=new ArrayList<>();
+        entities.addAll(laureateInterests);
+        return entities;
+    }
 
     public void setLaureateExperiences(List<LaureateExperience> laureateExperiences) {
         this.laureateExperiences = laureateExperiences;
@@ -120,13 +135,8 @@ public class Laureate {
         this.laureateSkills = laureateSkills;
     }
 
-    public Integer getLaureateId() {
-        return laureateId;
-    }
 
-    public void setLaureateId(Integer laureateId) {
-        this.laureateId = laureateId;
-    }
+
 
     @Override
     public String toString() {

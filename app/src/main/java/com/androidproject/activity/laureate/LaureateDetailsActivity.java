@@ -3,7 +3,6 @@ package com.androidproject.activity.laureate;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,18 +15,13 @@ import com.androidproject.activity.laureate.experience.ExperienceData;
 import com.androidproject.activity.laureate.experience.ListExperienceActivity;
 import com.androidproject.activity.laureate.interest.InterestData;
 import com.androidproject.activity.laureate.interest.ListInterest;
-import com.androidproject.activity.laureate.skill.EditSkills;
 import com.androidproject.activity.laureate.skill.ListSkills;
 import com.androidproject.activity.laureate.skill.SkillsData;
 import com.androidproject.dbLocal.MyDatabaseHelper;
 import com.androidproject.dbLocal.script.LaureateScript;
 import com.androidproject.models.Laureate.Laureate;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Optional;
 
@@ -87,7 +81,7 @@ public class LaureateDetailsActivity extends AppCompatActivity {
     void getAndSetIntentData(){
         if(getIntent().hasExtra("laureate_id")){
             Optional<Laureate> result = LaureateData.laureateList.stream().filter(
-                    laureate -> laureate.getLaureateId().equals(Integer.valueOf(getIntent().getStringExtra("laureate_id")))).findFirst();
+                    laureate -> laureate.getId().equals(Integer.valueOf(getIntent().getStringExtra("laureate_id")))).findFirst();
 
             if (result.isPresent()){
                 myLaureate = result.get();
@@ -156,14 +150,15 @@ public class LaureateDetailsActivity extends AppCompatActivity {
 //            Toast.makeText(this, "Error while deleting Laureate..", Toast.LENGTH_SHORT).show();
 //        });
         MyDatabaseHelper myDB = new MyDatabaseHelper(LaureateDetailsActivity.this);
-        myDB.deleteOneElement(String.valueOf(myLaureate.getLaureateId()), LaureateScript.TABLE_NAME , LaureateScript.ID_COLUMN);
+        myDB.deleteOneElement(String.valueOf(myLaureate.getId()), LaureateScript.TABLE_NAME , LaureateScript.ID_COLUMN);
         startActivity(new Intent(LaureateDetailsActivity.this, SchoolDashboardActivity.class));
-
+        finish();
     }
 
 
     public void editLaureate(View view) {
         Intent intent = new Intent(LaureateDetailsActivity.this, EditLaureateActivity.class);
         startActivity(intent);
+
     }
 }

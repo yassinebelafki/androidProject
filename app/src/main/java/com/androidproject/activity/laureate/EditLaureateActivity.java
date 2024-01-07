@@ -79,16 +79,20 @@ public class EditLaureateActivity extends AppCompatActivity {
         LaureateData.editedLaureate.setLaureateSkills(SkillsData.laureateSkills);
         MyDatabaseHelper myDB = new MyDatabaseHelper(EditLaureateActivity.this);
         myDB.updateLaureate(LaureateData.editedLaureate , oldLaureate);
-        databaseReference = firebaseDatabase.getReference("laureates").child(uniqueLaureateId);
-        databaseReference.setValue(LaureateData.editedLaureate).addOnSuccessListener(aVoid -> {
-            Toast.makeText(this, "Laureate Updated..", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(EditLaureateActivity.this, SchoolDashboardActivity.class);
-            startActivity(intent);
-        }).addOnFailureListener(e -> {
-            Toast.makeText(this, "Error while Updating Laureate..", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(EditLaureateActivity.this, SchoolDashboardActivity.class);
-            startActivity(intent);
-        });
+        Toast.makeText(this, "Laureate Updated..", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(EditLaureateActivity.this, SchoolDashboardActivity.class);
+        startActivity(intent);
+        finish();
+//        databaseReference = firebaseDatabase.getReference("laureates").child(uniqueLaureateId);
+//        databaseReference.setValue(LaureateData.editedLaureate).addOnSuccessListener(aVoid -> {
+//            Toast.makeText(this, "Laureate Updated..", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(EditLaureateActivity.this, SchoolDashboardActivity.class);
+//            startActivity(intent);
+//        }).addOnFailureListener(e -> {
+//            Toast.makeText(this, "Error while Updating Laureate..", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(EditLaureateActivity.this, SchoolDashboardActivity.class);
+//            startActivity(intent);
+//        });
     }
 
     public void goToExperienceList(View view) {

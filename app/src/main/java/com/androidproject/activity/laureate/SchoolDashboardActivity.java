@@ -1,7 +1,5 @@
 package com.androidproject.activity.laureate;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,9 +16,6 @@ import com.androidproject.dbLocal.MyDatabaseHelper;
 import com.androidproject.models.Laureate.Laureate;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -121,7 +116,7 @@ public class SchoolDashboardActivity extends AppCompatActivity {
                 laureate_trainings.clear();
                 laureate_cities.clear();
                 for (Laureate laureate : LaureateData.laureateList) {
-                    laureate_ids.add(String.valueOf(laureate.getLaureateId()));
+                    laureate_ids.add(String.valueOf(laureate.getId()));
                     laureate_names.add(laureate.getName());
                     laureate_trainings.add(laureate.getTraining());
                     laureate_cities.add(laureate.getCity());

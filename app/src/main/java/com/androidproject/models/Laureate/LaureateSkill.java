@@ -10,14 +10,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-public class LaureateSkill {
+public class LaureateSkill extends Entity{
 
-    private Integer id;
     private String type;
     private String name;
 
     public LaureateSkill(Integer id,String type, String name) {
-        this.id = id;
+        super(id);
         this.type = type;
         this.name = name;
     }
@@ -30,13 +29,7 @@ public class LaureateSkill {
     public LaureateSkill() {
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getType() {
         return type;

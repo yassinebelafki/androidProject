@@ -14,6 +14,7 @@ import com.androidproject.dbLocal.script.LaureateExperienceScript;
 import com.androidproject.dbLocal.script.LaureateInterestScript;
 import com.androidproject.dbLocal.script.LaureateScript;
 import com.androidproject.dbLocal.script.LaureateSkillScript;
+import com.androidproject.models.Laureate.Entity;
 import com.androidproject.models.Laureate.Laureate;
 import com.androidproject.models.Laureate.LaureateExperience;
 import com.androidproject.models.Laureate.LaureateInterests;
@@ -322,7 +323,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         List<LaureateInterests> interestList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] columns = {LaureateInterestScript.NAME_COLUMN};
+        String[] columns = {LaureateInterestScript.ID_COLUMN , LaureateInterestScript.NAME_COLUMN};
 
         String selection = LaureateInterestScript.ID_LAUREATE_COLUMN + "=?";
         String[] selectionArgs = {String.valueOf(laureateId)};
@@ -386,42 +387,50 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         laureateValues.put(LaureateScript.TRAINING_COLUMN, laureate.getTraining());
         laureateValues.put(LaureateScript.CITY_COLUMN, laureate.getCity());
         laureateValues.put(LaureateScript.AGE_COLUMN, laureate.getAge());
-        long result = db.update(LaureateScript.TABLE_NAME, laureateValues, LaureateScript.ID_COLUMN+"=?", new String[]{String.valueOf(laureate.getLaureateId())});
+        long result = db.update(LaureateScript.TABLE_NAME, laureateValues, LaureateScript.ID_COLUMN+"=?", new String[]{String.valueOf(laureate.getId())});
         if(result == -1){
             Toast.makeText(context, "Failed to update laureate!", Toast.LENGTH_SHORT).show();
         }else {
             //Experiences
             //delete The Missing values from the old laureate
-            deleteMissingExperiences(laureate.getLaureateExperiences() , oldLaureate.getLaureateExperiences());
+            deleteMissingElements(laureate.getLaureateExperiencesEntities() , oldLaureate.getLaureateExperiencesEntities());
             //update and add the new Experiences
-            updateAndAddNewExperiences(laureate.getLaureateExperiences(),laureate.getLaureateId());
+            updateAndAddNewExperiences(laureate.getLaureateExperiences(),laureate.getId());
 
             //Skills
             //delete The Missing values from the old Skills
-            deleteMissingSkills(laureate.getLaureateSkills() , oldLaureate.getLaureateSkills());
-            //update and add the new Experiences
-            updateAndAddNewExperiences(laureate.getLaureateExperiences(),laureate.getLaureateId());
+            deleteMissingElements(laureate.getLaureateSkillsEntities() , oldLaureate.getLaureateSkillsEntities());
+//            //update and add the new Experiences
+            updateAndAddNewSkill(laureate.getLaureateSkills(),laureate.getId());
 
             //delete The Missing values from the old laureate
-            deleteMissingExperiences(laureate.getLaureateExperiences() , oldLaureate.getLaureateExperiences());
-            //update and add the new Experiences
-            updateAndAddNewExperiences(laureate.getLaureateExperiences(),laureate.getLaureateId());
-
-
+            deleteMissingElements(laureate.getLaureateInterestsEntities() , oldLaureate.getLaureateInterestsEntities());
+//            //update and add the new Experiences
+            updateAndAddNewInterest(laureate.getLaureateInterests(),laureate.getId());
         }
     }
 
-    private void deleteMissingSkills(List<LaureateSkill> laureateSkills, List<LaureateSkill> laureateSkills1) {
-        List<Integer> oldIds = fetchExperienceIds(oldLaureateExperiences);
-        List<Integer> newIds = fetchExperienceIds(newLaureateExperiences);
-        List<Integer> missingIds = new ArrayList<>(oldIds);
-        missingIds.removeAll(newIds);
-        if (missingIds.isEmpty())
-            return;
-        for (Integer idToDelete : missingIds){
-            deleteOneElement(String.valueOf(idToDelete), LaureateExperienceScript.TABLE_NAME , LaureateExperienceScript.ID_COLUMN );
+    private void updateAndAddNewInterest(List<LaureateInterests> laureateInterests, Integer laureateId) {
+        for (LaureateInterests laureateInterest:laureateInterests) {
+            if (laureateInterest.getId() == null){
+                addInterest(laureateInterest , Long.valueOf(laureateId));
+            }
+            else {
+                updateInterest(laureateInterest);
+            }
         }
     }
+    private void updateAndAddNewSkill(List<LaureateSkill> laureateSkills, Integer laureateId) {
+        for (LaureateSkill laureateSkill:laureateSkills) {
+            if (laureateSkill.getId() == null){
+                addSkill(laureateSkill , Long.valueOf(laureateId));
+            }
+            else {
+                updateSkill(laureateSkill);
+            }
+        }
+    }
+
 
     private void updateAndAddNewExperiences(List<LaureateExperience> laureateExperiences, Integer laureateId) {
         for (LaureateExperience laureateExperience:laureateExperiences) {
@@ -434,22 +443,42 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void deleteMissingExperiences(List<LaureateExperience> newLaureateExperiences, List<LaureateExperience> oldLaureateExperiences) {
-        List<Integer> oldIds = fetchExperienceIds(oldLaureateExperiences);
-        List<Integer> newIds = fetchExperienceIds(newLaureateExperiences);
+    private void deleteMissingElements( List<Entity> newEntity,List<Entity> oldEntity) {
+        List<Integer> oldIds = fetchIds(oldEntity);
+        List<Integer> newIds = fetchIds(newEntity);
+        System.out.println("old ids");
+        System.out.println(oldIds);
+        System.out.println("new ids");
+        System.out.println(newIds);
         List<Integer> missingIds = new ArrayList<>(oldIds);
         missingIds.removeAll(newIds);
+        System.out.println("missing ids **********************" + missingIds);
         if (missingIds.isEmpty())
             return;
-        for (Integer idToDelete : missingIds){
-            deleteOneElement(String.valueOf(idToDelete), LaureateExperienceScript.TABLE_NAME , LaureateExperienceScript.ID_COLUMN );
+
+        if(oldEntity.get(0) instanceof LaureateExperience){
+            deleteMultipleElements(missingIds, LaureateExperienceScript.TABLE_NAME , LaureateExperienceScript.ID_COLUMN );
+        }
+        else if (oldEntity.get(0) instanceof LaureateSkill) {
+            deleteMultipleElements(missingIds, LaureateSkillScript.TABLE_NAME , LaureateSkillScript.ID_COLUMN );
+        }
+        else if (oldEntity.get(0) instanceof LaureateInterests) {
+            deleteMultipleElements(missingIds, LaureateInterestScript.TABLE_NAME , LaureateInterestScript.ID_COLUMN );
+        }
+
+    }
+
+    private void deleteMultipleElements(List<Integer> missingIds, String tableName, String idColumn) {
+        for (Integer idToDelete :missingIds) {
+            deleteOneElement(String.valueOf(idToDelete), tableName , idColumn);
         }
     }
 
-    private List<Integer> fetchExperienceIds(List<LaureateExperience> laureateExperiences) {
-        return laureateExperiences.stream()
-                .filter(laureateExperience -> laureateExperience.getId() != null)
-                .map(LaureateExperience::getId)
+
+    private List<Integer> fetchIds(List<Entity> entities) {
+        return entities.stream()
+                .filter(entity -> entity.getId() != null)
+                .map(Entity::getId)
                 .collect(Collectors.toList());
     }
 }

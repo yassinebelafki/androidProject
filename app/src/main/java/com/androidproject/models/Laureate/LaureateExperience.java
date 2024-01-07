@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-public class LaureateExperience {
-    private Integer id;
+public class LaureateExperience extends Entity{
     private String title;
     private String start_date;
     private String end_date;
@@ -20,7 +19,7 @@ public class LaureateExperience {
 
 
     public LaureateExperience(Integer id, String title, String start_date, String end_date, String description) {
-        this.id = id;
+        super(id);
         this.title = title;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -36,13 +35,7 @@ public class LaureateExperience {
     public LaureateExperience() {
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -79,7 +72,7 @@ public class LaureateExperience {
     @Override
     public String toString() {
         return "LaureateExperience{" +
-                "id=" + id +
+                "id=" + super.getId() +
                 ", title='" + title + '\'' +
                 ", start_date='" + start_date + '\'' +
                 ", end_date='" + end_date + '\'' +
