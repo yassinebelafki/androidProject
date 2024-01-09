@@ -33,16 +33,11 @@ public class EditInterest extends AppCompatActivity {
         actionBar.setTitle("Edit Interest");
         interestNameInput = findViewById(R.id.idEdtinterestNameUpdate);
         getAndSetIntentData();
-//        ActionBar ab = getSupportActionBar();
-//        if (ab != null) {
-//            ab.setTitle((CharSequence) interestNameInput);
-//        }
+
     }
     void getAndSetIntentData(){
         if(getIntent().hasExtra("interest_name")){
-//                 laureateExperience = myDatabaseHelper
-//                        .getExperienceById(getIntent().getStringExtra("experience_id"));
-            Optional<LaureateInterests> result = InterestData.laureateInterests.stream().filter(
+        Optional<LaureateInterests> result = InterestData.laureateInterests.stream().filter(
                         interests -> interests.getName().equals(getIntent().getStringExtra("interest_name"))).findFirst();
             if (result.isPresent()){
                 laureateInterests = result.get();

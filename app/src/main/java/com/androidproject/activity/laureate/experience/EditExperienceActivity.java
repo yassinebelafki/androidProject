@@ -41,9 +41,7 @@ import java.util.Optional;
     }
         void getAndSetIntentData(){
             if(getIntent().hasExtra("experience_title")){
-//                 laureateExperience = myDatabaseHelper
-//                        .getExperienceById(getIntent().getStringExtra("experience_id"));
-                Optional<LaureateExperience> result = ExperienceData.laureateExperienceList.stream().filter(
+               Optional<LaureateExperience> result = ExperienceData.laureateExperienceList.stream().filter(
                         laureateExperience1 -> laureateExperience1.getTitle().equals(getIntent().getStringExtra("experience_title")) &&
                                 laureateExperience1.getStart_date().equals(getIntent().getStringExtra("experience_start_date")) &&
                                 laureateExperience1.getEnd_date().equals(getIntent().getStringExtra("experience_end_date"))).findFirst();
@@ -61,11 +59,6 @@ import java.util.Optional;
         }
 
         public void updateExperience(View view) {
-//
-//            LaureateExperience laureateExperience =
-//                    new LaureateExperience(experienceTitle.getText().toString(),experienceDescription.getText().toString(),
-//                    experienceStartDate.getText().toString(),experienceEndDate.getText().toString());
-           // myDatabaseHelper.updateExperience(laureateExperience);
             laureateExperience.setTitle(experienceTitle.getText().toString());
             laureateExperience.setDescription(experienceDescription.getText().toString());
             laureateExperience.setStart_date(experienceStartDate.getText().toString());
@@ -81,13 +74,11 @@ import java.util.Optional;
         }
         void confirmDialog(){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Delete " + experienceTitle + "Experience ?");
+            builder.setTitle("Delete " + laureateExperience.getTitle() + "Experience ?");
             builder.setMessage("Are you sure you want to delete " + "it" + " ?");
             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-//                    MyDatabaseHelper myDB = new MyDatabaseHelper(EditExperienceActivity.this);
-//                    myDB.deleteOneRow(String.valueOf(laureateExperience.getId()));
                     ExperienceData.laureateExperienceList.remove(laureateExperience);
                    finish();
                     Intent intent = new Intent(EditExperienceActivity.this, ListExperienceActivity.class);

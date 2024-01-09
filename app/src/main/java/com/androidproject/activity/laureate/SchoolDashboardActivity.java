@@ -2,12 +2,17 @@ package com.androidproject.activity.laureate;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,7 +40,6 @@ public class SchoolDashboardActivity extends AppCompatActivity {
     private ProgressBar loadingPB;
     ImageView empty_imageview;
     TextView no_data;
-    private ArrayList<String> laureate_ids,laureate_names , laureate_trainings , laureate_cities;
     private CustomLaureateAdapter customLaureateAdapter;
 
     @Override
@@ -51,10 +55,6 @@ public class SchoolDashboardActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("laureates");
         loadingPB = findViewById(R.id.idPBLoading);
-        laureate_names = new ArrayList<>();
-        laureate_cities = new ArrayList<>();
-        laureate_trainings = new ArrayList<>();
-        laureate_ids = new ArrayList<>();
         getLaureates();
     }
 
@@ -66,45 +66,6 @@ public class SchoolDashboardActivity extends AppCompatActivity {
         LaureateData.laureateList = laureates;
         loadingPB.setVisibility(View.GONE);
         storeDataInArrays();
-        //on below line we are calling add child event listener method to read the data.
-//        databaseReference.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                //on below line we are hiding our progress bar.
-//                loadingPB.setVisibility(View.GONE);
-//                //adding snapshot to our array list on below line.
-//                laureates.add(snapshot.getValue(Laureate.class));
-//                //notifying our adapter that data has changed.
-//                //courseRVAdapter.notifyDataSetChanged();
-//                LaureateData.laureateList = laureates;
-//                storeDataInArrays();
-//            }
-//
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                //this method is called when new child is added we are notifying our adapter and making progress bar visibility as gone.
-//                loadingPB.setVisibility(View.GONE);
-//                //courseRVAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//                //notifying our adapter when child is removed.
-//                //courseRVAdapter.notifyDataSetChanged();
-//                loadingPB.setVisibility(View.GONE);
-//            }
-//
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                //notifying our adapter when child is moved.
-//                //courseRVAdapter.notifyDataSetChanged();
-//                loadingPB.setVisibility(View.GONE);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
     }
 
 
@@ -114,19 +75,9 @@ public class SchoolDashboardActivity extends AppCompatActivity {
             no_data.setVisibility(View.VISIBLE);
         }
         else {
-                laureate_ids.clear();
-                laureate_names.clear();
-                laureate_trainings.clear();
-                laureate_cities.clear();
-                for (Laureate laureate : LaureateData.laureateList) {
-                    laureate_ids.add(String.valueOf(laureate.getId()));
-                    laureate_names.add(laureate.getName());
-                    laureate_trainings.add(laureate.getTraining());
-                    laureate_cities.add(laureate.getCity());
-                }
+
                 customLaureateAdapter = new CustomLaureateAdapter(SchoolDashboardActivity.this,this,
-                        laureate_ids,laureate_names, laureate_trainings,
-                        laureate_cities);
+                        LaureateData.laureateList);
                 recyclerView.setAdapter(customLaureateAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(SchoolDashboardActivity.this));
         }
@@ -134,8 +85,33 @@ public class SchoolDashboardActivity extends AppCompatActivity {
 
 
     public void goToAddExperience(View view) {
-        finish();
         Intent intent = new Intent(SchoolDashboardActivity.this, AddLaureateActivity.class);
         startActivity(intent);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_header, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                customLaureateAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
     }
 }

@@ -37,8 +37,7 @@ public class ListSkills extends AppCompatActivity {
         setContentView(R.layout.activity_list_skills);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("List of Skills");
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
         empty_imageview = findViewById(R.id.empty_imageSkillview);
         no_data = findViewById(R.id.no_dataSkill);
         recyclerView = findViewById(R.id.recyclerSkillView);
