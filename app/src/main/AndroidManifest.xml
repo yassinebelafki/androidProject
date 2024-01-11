@@ -52,8 +52,6 @@
         <activity
             android:name=".activity.laureate.experience.ListExperienceActivity"
          />
-        <activity android:name=".activity.auth.RegisterActivity" />
-        <activity android:name=".activity.laureate.SchoolDashboardActivity" />
         <activity
             android:name=".activity.laureate.EditLaureateActivity"
             android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
@@ -63,7 +61,7 @@
             android:parentActivityName=".activity.laureate.SchoolDashboardActivity" />
 
         <activity
-            android:name=".activity.auth.LoginActivity"
+            android:name=".activity.laureate.SchoolDashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
