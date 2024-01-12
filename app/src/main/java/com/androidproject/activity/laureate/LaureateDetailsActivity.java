@@ -21,8 +21,6 @@ import com.androidproject.activity.laureate.skill.SkillsData;
 import com.androidproject.dbLocal.MyDatabaseHelper;
 import com.androidproject.dbLocal.script.LaureateScript;
 import com.androidproject.models.Laureate.Laureate;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Optional;
 

@@ -3,7 +3,6 @@ package com.androidproject.activity.laureate;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,8 +18,7 @@ import com.androidproject.activity.laureate.skill.SkillsData;
 import com.androidproject.dbLocal.MyDatabaseHelper;
 import com.androidproject.models.Laureate.Laureate;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 import java.util.ArrayList;
 
@@ -30,8 +28,6 @@ public class EditLaureateActivity extends AppCompatActivity {
 
     private String uniqueLaureateId;
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
     Laureate oldLaureate;
 
     @Override
@@ -55,8 +51,6 @@ public class EditLaureateActivity extends AppCompatActivity {
         laureatePhoneInput.setText(LaureateData.editedLaureate.getPhone());
 
         uniqueLaureateId = LaureateData.laureateUniqueIdentifier;
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("laureates");
         cloneEditedLaureate();
     }
 
@@ -86,16 +80,7 @@ public class EditLaureateActivity extends AppCompatActivity {
         Intent intent = new Intent(EditLaureateActivity.this, SchoolDashboardActivity.class);
         startActivity(intent);
         finish();
-//        databaseReference = firebaseDatabase.getReference("laureates").child(uniqueLaureateId);
-//        databaseReference.setValue(LaureateData.editedLaureate).addOnSuccessListener(aVoid -> {
-//            Toast.makeText(this, "Laureate Updated..", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(EditLaureateActivity.this, SchoolDashboardActivity.class);
-//            startActivity(intent);
-//        }).addOnFailureListener(e -> {
-//            Toast.makeText(this, "Error while Updating Laureate..", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(EditLaureateActivity.this, SchoolDashboardActivity.class);
-//            startActivity(intent);
-//        });
+
     }
 
     public void goToExperienceList(View view) {

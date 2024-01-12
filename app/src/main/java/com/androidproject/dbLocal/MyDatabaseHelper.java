@@ -217,8 +217,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         long result = db.delete(table_name, id_column_name+"=?", new String[]{row_id});
         if(result == -1){
             Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
-        }else{
-            //Toast.makeText(context, "Element Successfully Deleted.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -415,13 +413,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private void deleteMissingElements( List<Entity> newEntity,List<Entity> oldEntity) {
         List<Integer> oldIds = fetchIds(oldEntity);
         List<Integer> newIds = fetchIds(newEntity);
-        System.out.println("old ids");
-        System.out.println(oldIds);
-        System.out.println("new ids");
-        System.out.println(newIds);
         List<Integer> missingIds = new ArrayList<>(oldIds);
         missingIds.removeAll(newIds);
-        System.out.println("missing ids **********************" + missingIds);
         if (missingIds.isEmpty())
             return;
 

@@ -32,8 +32,6 @@ public class SchoolDashboardActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<Laureate> laureates;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
     private ProgressBar loadingPB;
     ImageView empty_imageview;
     TextView no_data;
@@ -49,8 +47,6 @@ public class SchoolDashboardActivity extends AppCompatActivity {
         empty_imageview = findViewById(R.id.empty_imageview);
         no_data = findViewById(R.id.no_data);
         recyclerView = findViewById(R.id.recyclerView);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("laureates");
         loadingPB = findViewById(R.id.idPBLoading);
         getLaureates();
     }
@@ -81,7 +77,7 @@ public class SchoolDashboardActivity extends AppCompatActivity {
     }
 
 
-    public void goToAddExperience(View view) {
+    public void goToAddELaureate(View view) {
         Intent intent = new Intent(SchoolDashboardActivity.this, AddLaureateActivity.class);
         startActivity(intent);
     }

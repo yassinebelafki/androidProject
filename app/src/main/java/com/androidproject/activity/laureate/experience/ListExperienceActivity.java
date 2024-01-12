@@ -27,9 +27,7 @@ public class ListExperienceActivity extends AppCompatActivity {
 
     ArrayList<String> experience_ids, experience_titles,experience_descriptions, experience_start_dates, experience_end_dates;
     CustomAdapter customAdapter;
-
     FloatingActionButton floatingActionButton;
-
     String no_detail_shown;
 
     @Override
@@ -81,20 +79,7 @@ public class ListExperienceActivity extends AppCompatActivity {
             }
         }
 
-//        Cursor cursor = myDB.readAllData();
-//        if(cursor.getCount() == 0){
-//            empty_imageview.setVisibility(View.VISIBLE);
-//            no_data.setVisibility(View.VISIBLE);
-//        }else{
-//            while (cursor.moveToNext()){
-//                experience_ids.add(cursor.getString(0));
-//                experience_titles.add(cursor.getString(1));
-//                experience_start_dates.add(cursor.getString(2));
-//                experience_end_dates.add(cursor.getString(3));
-//            }
-//            empty_imageview.setVisibility(View.GONE);
-//            no_data.setVisibility(View.GONE);
-//        }
+
     }
 
     public void goToAddExperience(View view) {
