@@ -30,12 +30,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Laureatedb";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String TABLE_NAME = "experiences";
-    private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_TITLE = "title";
-    private static final String COLUMN_START_DATE = "start_date";
-    private static final String COLUMN_END_DATE = "end_date";
-    private static final String COLUMN_DESCRIPTION = "description";
 
     public MyDatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -175,29 +169,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    @SuppressLint("Range")
-    public List<LaureateExperience> readAllExperiences(){
-        String query = "SELECT * FROM " + LaureateExperienceScript.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<LaureateExperience> laureateExperiences=new ArrayList<>();
-        Cursor cursor = null;
-        if(db != null){
-            cursor = db.rawQuery(query, null);
-            if (cursor.moveToFirst()) {
-                do {
-                    LaureateExperience laureateExperience = new LaureateExperience();
-                    laureateExperience.setId(cursor.getInt(cursor.getColumnIndex(LaureateExperienceScript.ID_COLUMN)));
-                    laureateExperience.setTitle(cursor.getString(cursor.getColumnIndex(LaureateExperienceScript.TITLE_COLUMN)));
-                    laureateExperience.setStart_date(cursor.getString(cursor.getColumnIndex(LaureateExperienceScript.START_DATE_COLUMN)));
-                    laureateExperience.setEnd_date(cursor.getString(cursor.getColumnIndex(LaureateExperienceScript.END_DATE_COLUMN)));
-                    laureateExperiences.add(laureateExperience);
-                } while (cursor.moveToNext());
-            }
 
-            db.close();
-        }
-        return laureateExperiences;
-    }
 
     public void updateExperience(LaureateExperience laureateExperience){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -250,10 +222,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteAllData(String table_name){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + table_name);
-    }
+
     @SuppressLint("Range")
     public LaureateExperience getExperienceById(String id) {
         SQLiteDatabase db = this.getReadableDatabase();

@@ -31,12 +31,7 @@ public class LaureateDetailsActivity extends AppCompatActivity {
             textViewExperience , textViewSkill , textViewInterest ;
     Laureate myLaureate = new Laureate();
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-
     String laureateName;
-    String uniqueIdentifier;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,29 +50,6 @@ public class LaureateDetailsActivity extends AppCompatActivity {
         textViewSkill = findViewById(R.id.textViewSkills);
         getAndSetIntentData();
 
-//        firebaseDatabase = FirebaseDatabase.getInstance();
-//        databaseReference = firebaseDatabase.getReference("laureates");
-//
-//        String laureateNameToDelete = myLaureate.getName();
-//        // Create a query to find the Laureate with a specific name
-//        Query query = databaseReference.orderByChild("name").equalTo(laureateNameToDelete);
-//
-//        query.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    // Retrieve the key for the Laureate with the specified name
-//                     uniqueIdentifier = snapshot.getKey();
-//                    LaureateData.laureateUniqueIdentifier = uniqueIdentifier;
-//                    databaseReference = firebaseDatabase.getReference("laureates").child(uniqueIdentifier);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Handle errors
-//            }
-//        });
 
     }
 
@@ -146,12 +118,7 @@ public class LaureateDetailsActivity extends AppCompatActivity {
     }
 
     public void executeDeletion(){
-        //on below line calling a method to delete the course.
-//        databaseReference.removeValue().addOnSuccessListener(aVoid -> {
-//            Toast.makeText(this, "Laureate Deleted..", Toast.LENGTH_SHORT).show();
-//        }).addOnFailureListener(e -> {
-//            Toast.makeText(this, "Error while deleting Laureate..", Toast.LENGTH_SHORT).show();
-//        });
+
         MyDatabaseHelper myDB = new MyDatabaseHelper(LaureateDetailsActivity.this);
         myDB.deleteOneElement(String.valueOf(myLaureate.getId()), LaureateScript.TABLE_NAME , LaureateScript.ID_COLUMN);
         startActivity(new Intent(LaureateDetailsActivity.this, SchoolDashboardActivity.class));

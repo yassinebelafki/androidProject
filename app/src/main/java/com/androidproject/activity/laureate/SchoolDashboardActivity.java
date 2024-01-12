@@ -32,11 +32,8 @@ public class SchoolDashboardActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<Laureate> laureates;
-    private FloatingActionButton addCourseFAB;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    private RecyclerView courseRV;
-    private FirebaseAuth mAuth;
     private ProgressBar loadingPB;
     ImageView empty_imageview;
     TextView no_data;
